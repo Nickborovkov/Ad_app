@@ -1,0 +1,31 @@
+.profileinfo{
+    display: flex;
+    justify-content: center;
+}
+.profileinfo__avatarWrapper{
+    width: 300px;
+}
+.profileinfo__avatar{
+    width: 100%;
+    border-radius: 10px;
+}
+.profileinfo__info{
+    margin-left: 5%;
+}
+.profileinfo__name{
+    font-size: 35px;
+    color: teal;
+}
+.profileinfo__infoholder{
+    display: flex;
+}
+.profileinfo__title{
+    font-size: 25px;
+    font-weight: bolder;
+    min-width: 200px;
+}
+.profileinfo__subtitle{
+    font-size: 25px;
+    margin-left: 5%;
+    min-width: 250px;
+}

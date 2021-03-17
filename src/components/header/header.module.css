@@ -1,0 +1,20 @@
+.header{
+    display: flex;
+    justify-content: center;
+    background-color: #282a29;
+    padding: 20px 0;
+    grid-area: header;
+}
+.header__logoWrapper{
+    margin-right: 20%;
+}
+.header__logo{
+    width: 100px;
+}
+.header__companyWrapper{
+    margin-left: 20%;
+}
+.header__company{
+    color: #e83349;
+    font-size: 30px;
+}
