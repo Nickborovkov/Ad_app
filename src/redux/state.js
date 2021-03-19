@@ -1,3 +1,14 @@
+import nick from './../images/users/nick.jpg';
+import mike from './../images/users/mike.jpg';
+import tom from './../images/users/tom.jpg';
+import andrew from './../images/users/andrew.jpg';
+import desmond from './../images/users/desmond.jpg';
+import bob from './../images/users/bob.jpg';
+import keeanu from './../images/users/keeanu.jpg';
+import chris from './../images/users/chris.jpg';
+import walter from './../images/users/walter.jpg';
+import loko from './../images/users/loko.jpg';
+
 let state = {
     profilePage : {
         profile: [
@@ -15,17 +26,17 @@ let state = {
         ],
     },
     dialogsPage: {
-        dialogs: [
+        users: [
             {id:1, name: `Nick`},
             {id:2, name: `Mike`},
             {id:3, name: `Tom`},
             {id:4, name: `Andrew`},
-            {id:5, name: `Geralt`},
-            {id:6, name: `Triss`},
-            {id:7, name: `Yen`},
-            {id:8, name: `Keira`},
-            {id:9, name: `Ciri`},
-            {id:10, name: `Anna`},
+            {id:5, name: `Desmond`},
+            {id:6, name: `Bob`},
+            {id:7, name: `Keeanu`},
+            {id:8, name: `Chris`},
+            {id:9, name: `Walter`},
+            {id:10, name: `Loko`},
         ],
         messages: [
             {id:1, message:`Hi bro`},
@@ -34,10 +45,22 @@ let state = {
             {id:4, message:`What?`},
             {id:5, message:`Wazzaaaap`},
             {id:6, message:`Hello`},
-            {id:7, message:`Unicorn is waiting`},
+            {id:7, message:`Fuck off`},
             {id:8, message:`Good evening`},
             {id:9, message:`Hi`},
-            {id:10, message:`Hi, how are you`},
+            {id:10, message:`Hi, man`},
+        ],
+        photos: [
+            {id:1, avatar: {nick}},
+            {id:2, avatar: {mike}},
+            {id:3, avatar: {tom}},
+            {id:4, avatar: {andrew}},
+            {id:5, avatar: {desmond}},
+            {id:6, avatar: {bob}},
+            {id:7, avatar: {keeanu}},
+            {id:8, avatar: {chris}},
+            {id:9, avatar: {walter}},
+            {id:10, avatar: {loko}},
         ],
     }
 }

@@ -6,6 +6,9 @@
     text-align: center;
     color: #e83349;
 }
+.myposts__postList{
+    padding-top: 100px;
+}
 .myposts__holder{
     padding-top: 50px;
 }

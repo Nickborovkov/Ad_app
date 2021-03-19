@@ -1,0 +1,37 @@
+.dialogs{
+    padding-bottom: 100px;
+}
+.dialogs__heading{
+    text-align: center;
+    font-size: 40px;
+    color: #e83349;
+    padding-bottom: 50px;
+}
+.dialogs__inner{
+    display: flex;
+    justify-content: center;
+}
+.dialogs__holder{
+    margin: 0 5%;
+}
+.dialogs__title{
+    color: teal;
+    font-size: 40px;
+}
+.dialogs__userItem{
+    font-size: 30px;
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding-bottom: 30px;
+}
+.dialogs__messageItem{
+    font-size: 30px;
+}
+.dialogs__avatar{
+    width: 100px;
+    border-radius: 10px;
+}
+.dialogs__avatarWrapper{
+    width: 100%;    
+}

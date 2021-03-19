@@ -21,7 +21,8 @@ function App(props) {
         <div className='contentWrapper'>
           <Route path='/profile' 
           render={() => <Profile state={props.state.profilePage}/>}/>
-          <Route exact path='/dialogs' render={()=><Dialogs />}/>
+          <Route exact path='/dialogs' 
+          render={()=><Dialogs state={props.state.dialogsPage}/>}/>
           <Route path='/news' render={()=><News />}/>
           <Route path='/friends' render={()=><Friends />}/>          
           <Route path='/photos' render={()=><Photos />}/>
