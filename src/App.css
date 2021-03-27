@@ -4,7 +4,8 @@
   display: grid;
   grid-template-areas: 
   'header header header header header header header header'
-  'navbar content content content content content content content';
+  'navbar content content content content content content content'
+  'footer footer footer footer footer footer footer footer';
   box-shadow: 3px 3px 3px #eee, -3px -3px 3px #eee;
 }
 .contentWrapper{

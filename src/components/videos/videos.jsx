@@ -3,7 +3,7 @@ import classes from './videos.module.css'
 const Videos = () => {
     return(
         <div className={classes.videos}>
-            Videos
+            <h2 className={classes.videos__heading}>Videos</h2>
         </div>
     );
 };

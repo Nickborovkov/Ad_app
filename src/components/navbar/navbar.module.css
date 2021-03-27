@@ -12,9 +12,18 @@
 }
 .navbar__link:hover {
     color: red;
-    transform: scale(1.1, 1.1) translateX(50px);
+    transform: scale(1.1, 1.1);
 }
 .navbar__active {
     color: teal;
-    transform: scale(1.1, 1.1) translateX(50px);
+    transform: scale(1.1, 1.1);
+}
+.navbar__previewAvatars{
+    display: flex;
+    justify-content: center;
+}
+.navbar__previewAvatar{
+    width: 50px;
+    border-radius: 10px;
+    margin: 5px;
 }

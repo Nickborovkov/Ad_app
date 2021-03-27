@@ -1,23 +1,27 @@
-import nick from './../images/users/nick.jpg';
-import mike from './../images/users/mike.jpg';
-import tom from './../images/users/tom.jpg';
-import andrew from './../images/users/andrew.jpg';
-import desmond from './../images/users/desmond.jpg';
-import bob from './../images/users/bob.jpg';
-import keeanu from './../images/users/keeanu.jpg';
-import chris from './../images/users/chris.jpg';
-import walter from './../images/users/walter.jpg';
-import loko from './../images/users/loko.jpg';
+import avatar from './../images/avatar.png'
+
+import user1 from './../images/users/user1.jpg'
+import user2 from './../images/users/user2.jpg'
+import user3 from './../images/users/user3.jpg'
+import user4 from './../images/users/user4.jpg'
+import user5 from './../images/users/user5.jpg'
+import user6 from './../images/users/user6.jpg'
+import user7 from './../images/users/user7.jpg'
+import user8 from './../images/users/user8.jpg'
+import user9 from './../images/users/user9.jpg'
+import user10 from './../images/users/user10.jpg'
+
 
 let state = {
     profilePage : {
         profile: [
-            {title: 'Name', subtitle:`Nick Borovkov`},
-            {title: 'Age', subtitle:`24`},
-            {title: 'Date of Birth', subtitle:`December 30th 1996`},
-            {title:'City', subtitle:`Moscow`},
-            {title:'Education', subtitle:`MTUCI`},
+            {title: 'Name', subtitle:` Jonatan Parker`},
+            {title: 'Age', subtitle:`29`},
+            {title: 'Date of Birth', subtitle:`Dec 26 1992`},
+            {title:'City', subtitle:`Bogisichborough`},
+            {title:'Education', subtitle:`MIT`},
         ],
+        avatar: avatar,
         posts: [
             {id:1, message:`Hi`, likescount: 6},
             {id:2, message:`Konichiva`, likescount: 3},
@@ -27,41 +31,43 @@ let state = {
     },
     dialogsPage: {
         users: [
-            {id:1, name: `Nick`},
-            {id:2, name: `Mike`},
-            {id:3, name: `Tom`},
-            {id:4, name: `Andrew`},
-            {id:5, name: `Desmond`},
-            {id:6, name: `Bob`},
-            {id:7, name: `Keeanu`},
-            {id:8, name: `Chris`},
-            {id:9, name: `Walter`},
-            {id:10, name: `Loko`},
+            {id:1, name: `Rasheed Thompson`},
+            {id:2, name: `Tiana Jaskolski`},
+            {id:3, name: `Linda Stokes`},
+            {id:4, name: `Jorge Wiza`},
+            {id:5, name: `Garret Leuschke`},
+            {id:6, name: `Ilene Treutel`},
+            {id:7, name: `Devan Haley`},
+            {id:8, name: `Dane Boyle`},
+            {id:9, name: `Ivah Mohr`},
+            {id:10, name: `Kurtis Walsh`},
         ],
         messages: [
-            {id:1, message:`Hi bro`},
-            {id:2, message:`Agreed`},
-            {id:3, message:`No way`},
-            {id:4, message:`What?`},
-            {id:5, message:`Wazzaaaap`},
-            {id:6, message:`Hello`},
-            {id:7, message:`Fuck off`},
-            {id:8, message:`Good evening`},
-            {id:9, message:`Hi`},
-            {id:10, message:`Hi, man`},
+            {id:1, message:`quantifying`},
+            {id:2, message:`434-806-2276`},
+            {id:3, message:`Mara_Block`},
+            {id:4, message:`tertiary`},
+            {id:5, message:`The Football Is Good For Training`},
+            {id:6, message:`direct_black.mp3`},
+            {id:7, message:`Generic Steel Sausages`},
+            {id:8, message:`Cross-platform analyzing workforce`},
+            {id:9, message:`We need to generate the redundant GB program!`},
+            {id:10, message:`Generating the array won't do anything!`},
         ],
-        photos: [
-            {id:1, avatar: {nick}},
-            {id:2, avatar: {mike}},
-            {id:3, avatar: {tom}},
-            {id:4, avatar: {andrew}},
-            {id:5, avatar: {desmond}},
-            {id:6, avatar: {bob}},
-            {id:7, avatar: {keeanu}},
-            {id:8, avatar: {chris}},
-            {id:9, avatar: {walter}},
-            {id:10, avatar: {loko}},
-        ],
+    },
+    friendsPage: {
+        users:[
+            {name: `Rasheed Thompson`, status: `Principal haptic`, avatar: user1},
+            {name: `Tiana Jaskolski`, status: `Deposit value-added`, avatar: user2},
+            {name: `Linda Stokes`, status: `Maroon optimal`, avatar: user3},
+            {name: `Jorge Wiza`, status: `Boliviano`, avatar: user4},
+            {name: `Garret Leuschke`, status: `IB magenta`, avatar: user5},
+            {name: `Ilene Treutel`, status: `Copy`, avatar: user6},
+            {name: `Devan Haley`, status: `Invoice Unbranded Salad`, avatar: user7},
+            {name: `Dane Boyle`, status: `Bluetooth`, avatar: user8},
+            {name: `Ivah Mohr`, status: `Industrial`, avatar: user9},
+            {name: `Kurtis Walsh`, status: `Reboot`, avatar: user10},
+        ]
     }
 }
 

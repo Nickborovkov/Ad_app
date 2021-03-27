@@ -10,6 +10,7 @@ import Photos from './components/photos/photos';
 import Music from './components/music/music';
 import Videos from './components/videos/videos';
 import Settings from './components/settings/settings';
+import Footer from './components/footer/footer';
 
 
 function App(props) {
@@ -17,19 +18,28 @@ function App(props) {
     <BrowserRouter>
       <div className='app__wrapper'>
         <Header />
-        <Navbar />
+        <Route render={()=><Navbar state={props.state.friendsPage}/>} />
         <div className='contentWrapper'>
           <Route path='/profile' 
           render={() => <Profile state={props.state.profilePage}/>}/>
+
           <Route exact path='/dialogs' 
           render={()=><Dialogs state={props.state.dialogsPage}/>}/>
+
           <Route path='/news' render={()=><News />}/>
-          <Route path='/friends' render={()=><Friends />}/>          
+
+          <Route path='/friends' 
+          render={()=><Friends state={props.state.friendsPage}/>}/>   
+
           <Route path='/photos' render={()=><Photos />}/>
+
           <Route path='/music' render={()=><Music />}/>
+
           <Route path='/videos' render={()=><Videos />}/>
+
           <Route path='/settings' render={()=><Settings />}/>
         </div>
+        <Footer />
       </div>
     </BrowserRouter>
   );
