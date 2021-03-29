@@ -1,5 +1,4 @@
 import classes from './profileinfo.module.css'
-import avatar from './../../../images/avatar.png'
 import PersonalData from './personalData/personalData'
 
 const Profileinfo = (props) => {

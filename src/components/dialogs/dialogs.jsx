@@ -9,6 +9,8 @@ const Dialogs = (props) => {
     let dialogsElements = props.state.users.map((d)=><User id={d.id} users={d.name}/>);
     let messagesElements = props.state.messages.map((m)=><Dialog id={m.id} message={m.message}/>)
 
+    let photosElements = props.photos.users.map((p)=><Photo avatar={p.avatar}/>)
+
 
 
     return(
@@ -16,7 +18,7 @@ const Dialogs = (props) => {
             <h2 className={classes.dialogs__heading}>Dialogs</h2>
             <div className={classes.dialogs__inner}>
                 <div className={classes.dialogs__holder}>
-
+                    {photosElements}
                 </div>
                 <div className={classes.dialogs__holder}>
                     <h3 className={classes.dialogs__title}>Users</h3>

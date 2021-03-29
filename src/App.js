@@ -24,7 +24,7 @@ function App(props) {
           render={() => <Profile state={props.state.profilePage}/>}/>
 
           <Route exact path='/dialogs' 
-          render={()=><Dialogs state={props.state.dialogsPage}/>}/>
+          render={()=><Dialogs state={props.state.dialogsPage} photos={props.state.friendsPage}/>}/>
 
           <Route path='/news' render={()=><News />}/>
 
