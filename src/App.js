@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Header from './components/header/header';
 import Navbar from './components/navbar/navbar';
 import Profile from './components/profile/profile';
@@ -15,16 +15,20 @@ import Footer from './components/footer/footer';
 
 function App(props) {
   return (
-    <BrowserRouter>
       <div className='app__wrapper'>
         <Header />
         <Route render={()=><Navbar state={props.state.friendsPage}/>} />
         <div className='contentWrapper'>
           <Route path='/profile' 
-          render={() => <Profile state={props.state.profilePage}/>}/>
-
+          render={() => <Profile state={props.state.profilePage} 
+                                 addPost={props.addPost}
+                                 updateNewPostText={props.updateNewPostText}/>}/>
+                                
           <Route exact path='/dialogs' 
-          render={()=><Dialogs state={props.state.dialogsPage} photos={props.state.friendsPage}/>}/>
+          render={()=><Dialogs state={props.state.dialogsPage} 
+                               photos={props.state.friendsPage}
+                               addMessage={props.addMessage}
+                               updateNewMessageText={props.updateNewMessageText}/>}/>
 
           <Route path='/news' render={()=><News />}/>
 
@@ -41,8 +45,7 @@ function App(props) {
         </div>
         <Footer />
       </div>
-    </BrowserRouter>
-  );
+ );
 }
 
 export default App;

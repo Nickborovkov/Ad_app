@@ -11,6 +11,8 @@ import user8 from './../images/users/user8.jpg'
 import user9 from './../images/users/user9.jpg'
 import user10 from './../images/users/user10.jpg'
 
+import { rerenderEntireTree } from '../render'
+
 
 let state = {
     profilePage : {
@@ -28,6 +30,7 @@ let state = {
             {id:3, message:`Good Evening`, likescount: 11},
             {id:4, message:`Fuck you all`, likescount: 1},
         ],
+        newPostText: ``
     },
     dialogsPage: {
         users: [
@@ -54,6 +57,7 @@ let state = {
             {id:9, message:`We need to generate the redundant GB program!`},
             {id:10, message:`Generating the array won't do anything!`},
         ],
+        newMessageText: `Bloody Hell`
     },
     friendsPage: {
         users:[
@@ -70,5 +74,44 @@ let state = {
         ]
     }
 }
+
+
+window.state = state
+
+
+export let addPost = () => {
+    let newPost = {
+        id:5,
+        message: state.profilePage.newPostText,
+        likescount: 1 
+    };
+    state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = ``
+    rerenderEntireTree(state)
+};
+
+export let updateNewPostText = (newText) =>{
+    state.profilePage.newPostText = newText;
+    rerenderEntireTree(state)
+};
+
+
+
+
+export let addMessage = () => {
+    let newMessage = {
+        id: 11,
+        message: state.dialogsPage.newMessageText
+    };
+    state.dialogsPage.messages.push(newMessage);
+    state.dialogsPage.messages.newMessageText = ``
+    rerenderEntireTree(state)
+};
+
+export let updateNewMessageText = (newText) => {
+    state.dialogsPage.newMessageText = newText;
+    rerenderEntireTree(state)
+};
+
 
 export default state;
