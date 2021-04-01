@@ -35,3 +35,30 @@
 .dialogs__avatarWrapper{
     width: 100%;    
 }
+.temp__textarea{
+    width: 600px;
+    height: 300px;
+    padding: 20px;
+    display: block;
+    margin: 0 auto;
+    border: 5px solid tomato;
+    border-radius: 10px;
+    font-size: 40px;
+    color: teal;
+}
+.temp__buttonHolder{
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
+}
+.temp__button{
+    width: 200px;
+    height: 60px;
+    background-color: tomato;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    margin: 0 30px;
+}

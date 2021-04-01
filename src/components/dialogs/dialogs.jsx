@@ -2,19 +2,14 @@ import classes from './dialogs.module.css'
 import User from './user/user';
 import Dialog from './dialog/dialog';
 import Photo from './photo/photo';
+import React from 'react';
 
 
 const Dialogs = (props) => {
 
     let dialogsElements = props.state.users.map((d)=><User id={d.id} users={d.name}/>);
-    let messagesElements = props.state.messages.map((m)=><Dialog id={m.id} 
-                                                                message={m.message} 
-                                                                addMessage={props.addMessage}
-                                                                updateNewMessageText={props.updateNewMessageText}/>)
-
+    let messagesElements = props.state.messages.map((m)=><Dialog id={m.id} message={m.message} />)
     let photosElements = props.photos.users.map((p)=><Photo avatar={p.avatar}/>)
-
-
 
     return(
         <div className={classes.dialogs}>
@@ -32,6 +27,12 @@ const Dialogs = (props) => {
                     {messagesElements}
                 </div>
             </div>
+            <textarea className={classes.temp__textarea}/>
+            <div className={classes.temp__buttonHolder}>
+                <button className={classes.temp__button}>Send</button>
+                <button className={classes.temp__button}>Clear</button>
+            </div>
+
         </div>
     );
 };
