@@ -16,6 +16,10 @@ const addPost= `ADD-POST`;
 const updateNewPostText= `UPDATE-NEW-POST-TEXT`;
 const deletePost= `DELETE-POST`;
 
+const addMessage= `ADD-MESSAGE`;
+const updateMessageText= `UPDATE-MESSAGE-TEXT`;
+const clearMessage= `CLEAR-MESSAGE`;
+
 
 let store = {
     _state: {
@@ -61,7 +65,7 @@ let store = {
                 {id:9, message:`We need to generate the redundant GB program!`},
                 {id:10, message:`Generating the array won't do anything!`},
             ],
-            newMessageText: `Bloody Hell`
+            newMessageText: ``
         },
         friendsPage: {
             users:[
@@ -108,6 +112,22 @@ let store = {
             this._state.profilePage.newPostText = ``;
             this._callSubscriber(this._state);
 
+        }else if(action.type === `ADD-MESSAGE`){
+            let newMessage = {
+                id: 11,
+                message: this._state.dialogsPage.newMessageText
+            }
+            this._state.dialogsPage.messages.push(newMessage)
+            this._state.dialogsPage.newMessageText = ``
+            this._callSubscriber(this._state)
+
+        }else if(action.type === `UPDATE-MESSAGE-TEXT`){
+            this._state.dialogsPage.newMessageText = action.newMessageText;
+            this._callSubscriber(this._state)
+
+        }else if(action.type === `CLEAR-MESSAGE`){
+            this._state.dialogsPage.newMessageText = ``
+            this._callSubscriber(this._state)
         }
     },      
 }
@@ -117,11 +137,10 @@ export const addPostActionCreator = () => ({type: addPost});
 export const updateNewPostTextActionCreator = (text) => ({type: updateNewPostText, newText: text});
 export const deletePostActionCreator = () => ({type: deletePost});
 
+export const addMessageActionCreator = () => ({type: addMessage});
+export const updateMessageActionCreator = (text) => ({type: updateMessageText, newMessageText: text});
+export const clearMessageActionCreator = () => ({type: clearMessage});
+
 
 export default store;
 window.store = store
-
-
-
-
-

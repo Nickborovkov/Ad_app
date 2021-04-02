@@ -25,7 +25,8 @@ function App(props) {
                                 
           <Route exact path='/dialogs' 
           render={()=><Dialogs state={props.state.dialogsPage} 
-                               photos={props.state.friendsPage}/>}/>
+                               photos={props.state.friendsPage}
+                               dispatch={props.dispatch}/>}/>
 
           <Route path='/news' render={()=><News />}/>
 

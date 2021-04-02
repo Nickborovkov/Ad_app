@@ -1,5 +1,5 @@
 import './index.css';
-import store from './redux/state';
+import store, { addMessage, clearMessage, updateMessageText } from './redux/state';
 import reportWebVitals from './reportWebVitals';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -12,7 +12,7 @@ let rerenderEntireTree = (state) =>{
   ReactDOM.render(
     <BrowserRouter>
         <React.StrictMode>
-            <App state={state} 
+            <App state={state}
                  dispatch={store.dispatch.bind(store)}/>
         </React.StrictMode>
     </BrowserRouter>, document.getElementById('root')

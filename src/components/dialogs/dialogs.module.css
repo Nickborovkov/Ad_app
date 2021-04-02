@@ -35,6 +35,13 @@
 .dialogs__avatarWrapper{
     width: 100%;    
 }
+.dialogs__message{
+    background-color: rgba(0,0,0,.2);
+    text-align: center;
+    width: 500px;
+    height: 100px;
+    display: block;
+}
 .temp__textarea{
     width: 600px;
     height: 300px;
@@ -45,6 +52,7 @@
     border-radius: 10px;
     font-size: 40px;
     color: teal;
+    margin-top: 100px;
 }
 .temp__buttonHolder{
     display: flex;

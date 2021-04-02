@@ -5,11 +5,32 @@ import Photo from './photo/photo';
 import React from 'react';
 
 
+import {addMessageActionCreator} from './../../redux/state'
+import {updateMessageActionCreator} from './../../redux/state'
+import {clearMessageActionCreator} from './../../redux/state'
+
+
 const Dialogs = (props) => {
 
     let dialogsElements = props.state.users.map((d)=><User id={d.id} users={d.name}/>);
     let messagesElements = props.state.messages.map((m)=><Dialog id={m.id} message={m.message} />)
     let photosElements = props.photos.users.map((p)=><Photo avatar={p.avatar}/>)
+
+
+    let currMessageText = React.createRef();
+    
+    let updateMessageText =() =>{
+        let text = currMessageText.current.value
+        props.dispatch(updateMessageActionCreator(text));
+    };
+    let addMessage = () =>{
+        props.dispatch(addMessageActionCreator());
+    }
+    let clearMessage = () =>{
+        props.dispatch(clearMessageActionCreator());
+    }
+    
+
 
     return(
         <div className={classes.dialogs}>
@@ -27,10 +48,15 @@ const Dialogs = (props) => {
                     {messagesElements}
                 </div>
             </div>
-            <textarea className={classes.temp__textarea}/>
+            <textarea className={classes.temp__textarea}
+                      ref={currMessageText}
+                      value={props.state.newMessageText}
+                      onChange={updateMessageText}/>
             <div className={classes.temp__buttonHolder}>
-                <button className={classes.temp__button}>Send</button>
-                <button className={classes.temp__button}>Clear</button>
+                <button className={classes.temp__button}
+                        onClick={addMessage}>Send</button>
+                <button className={classes.temp__button}
+                        onClick={clearMessage}>Clear</button>
             </div>
 
         </div>
