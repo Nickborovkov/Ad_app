@@ -1,5 +1,5 @@
 import './index.css';
-import store, { addMessage, clearMessage, updateMessageText } from './redux/state';
+import store from './redux/state';
 import reportWebVitals from './reportWebVitals';
 import React from 'react';
 import ReactDOM from 'react-dom';
