@@ -16,11 +16,9 @@ const Dialogs = (props) => {
     let messagesElements = props.state.messages.map((m)=><Dialog id={m.id} message={m.message} />)
     let photosElements = props.photos.users.map((p)=><Photo avatar={p.avatar}/>)
 
-
-    let currMessageText = React.createRef();
     
-    let updateMessageText =() =>{
-        let text = currMessageText.current.value
+    let updateMessageText =(event) =>{
+        let text = event.target.value
         props.dispatch(updateMessageActionCreator(text));
     };
     let addMessage = () =>{
@@ -49,7 +47,6 @@ const Dialogs = (props) => {
                 </div>
             </div>
             <textarea className={classes.temp__textarea}
-                      ref={currMessageText}
                       value={props.state.newMessageText}
                       onChange={updateMessageText}/>
             <div className={classes.temp__buttonHolder}>
