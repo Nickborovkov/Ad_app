@@ -5,9 +5,9 @@ import Photo from './photo/photo';
 import React from 'react';
 
 
-import {addMessageActionCreator} from './../../redux/state'
-import {updateMessageActionCreator} from './../../redux/state'
-import {clearMessageActionCreator} from './../../redux/state'
+import {addMessageActionCreator} from './../../redux/dialogsReducer'
+import {updateMessageActionCreator} from './../../redux/dialogsReducer'
+import {clearMessageActionCreator} from './../../redux/dialogsReducer'
 
 
 const Dialogs = (props) => {

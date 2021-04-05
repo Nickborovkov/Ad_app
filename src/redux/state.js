@@ -10,16 +10,8 @@ import user7 from './../images/users/user7.jpg'
 import user8 from './../images/users/user8.jpg'
 import user9 from './../images/users/user9.jpg'
 import user10 from './../images/users/user10.jpg'
-
-
-const addPost= `ADD-POST`;
-const updateNewPostText= `UPDATE-NEW-POST-TEXT`;
-const deletePost= `DELETE-POST`;
-
-const addMessage= `ADD-MESSAGE`;
-const updateMessageText= `UPDATE-MESSAGE-TEXT`;
-const clearMessage= `CLEAR-MESSAGE`;
-
+import profileReducer from './profileReducer'
+import dialogsReducer from './dialogsReducer'
 
 let store = {
     _state: {
@@ -94,52 +86,11 @@ let store = {
     },
     
     dispatch(action) {
-        if(action.type === `ADD-POST`){
-            let newPost = {
-                id:5,
-                message: this._state.profilePage.newPostText,
-                likescount: 1 
-            };
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = ``
-            this._callSubscriber(this._state);
-
-        }else if(action.type === `UPDATE-NEW-POST-TEXT`){
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state);
-
-        }else if(action.type === `DELETE-POST`){
-            this._state.profilePage.newPostText = ``;
-            this._callSubscriber(this._state);
-
-        }else if(action.type === `ADD-MESSAGE`){
-            let newMessage = {
-                id: 11,
-                message: this._state.dialogsPage.newMessageText
-            }
-            this._state.dialogsPage.messages.push(newMessage)
-            this._state.dialogsPage.newMessageText = ``
-            this._callSubscriber(this._state)
-
-        }else if(action.type === `UPDATE-MESSAGE-TEXT`){
-            this._state.dialogsPage.newMessageText = action.newMessageText;
-            this._callSubscriber(this._state)
-
-        }else if(action.type === `CLEAR-MESSAGE`){
-            this._state.dialogsPage.newMessageText = ``
-            this._callSubscriber(this._state)
-        }
+        profileReducer(this._state.profilePage, action)
+        dialogsReducer(this._state.dialogsPage, action)
+        this._callSubscriber(this._state)
     },      
 }
-
-
-export const addPostActionCreator = () => ({type: addPost});
-export const updateNewPostTextActionCreator = (text) => ({type: updateNewPostText, newText: text});
-export const deletePostActionCreator = () => ({type: deletePost});
-
-export const addMessageActionCreator = () => ({type: addMessage});
-export const updateMessageActionCreator = (text) => ({type: updateMessageText, newMessageText: text});
-export const clearMessageActionCreator = () => ({type: clearMessage});
 
 
 export default store;
