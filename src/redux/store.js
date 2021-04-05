@@ -10,6 +10,7 @@ import user7 from './../images/users/user7.jpg'
 import user8 from './../images/users/user8.jpg'
 import user9 from './../images/users/user9.jpg'
 import user10 from './../images/users/user10.jpg'
+
 import profileReducer from './profileReducer'
 import dialogsReducer from './dialogsReducer'
 
@@ -86,8 +87,8 @@ let store = {
     },
     
     dispatch(action) {
-        profileReducer(this._state.profilePage, action)
-        dialogsReducer(this._state.dialogsPage, action)
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         this._callSubscriber(this._state)
     },      
 }

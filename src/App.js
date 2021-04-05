@@ -17,7 +17,7 @@ function App(props) {
   return (
       <div className='app__wrapper'>
         <Header />
-        <Route render={()=><Navbar state={props.state.friendsPage}/>} />
+        <Route render={()=><Navbar />} /> {/*state={props.state.friendsPage}*/}
         <div className='contentWrapper'>
           <Route path='/profile' 
           render={() => <Profile state={props.state.profilePage} 

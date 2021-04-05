@@ -10,7 +10,7 @@ const Profileinfo = (props) => {
                 <img className={classes.profileinfo__avatar} src={props.avatar} alt="avatar"/>
             </div>            
             <div className={classes.profileinfo__info}>
-            {personalDataElements}
+                {personalDataElements}
             </div>
         </div>
     );
