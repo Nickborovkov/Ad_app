@@ -5,12 +5,12 @@ import Navbar from './components/navbar/navbar';
 import Profile from './components/profile/profile';
 import News from './components/news/news'
 import Friends from './components/friends/friends';
-import Dialogs from './components/dialogs/dialogs';
 import Photos from './components/photos/photos';
 import Music from './components/music/music';
 import Videos from './components/videos/videos';
 import Settings from './components/settings/settings';
 import Footer from './components/footer/footer';
+import DialogsContainer from './components/dialogs/dialogsContainer';
 
 
 function App(props) {
@@ -20,13 +20,10 @@ function App(props) {
         <Route render={()=><Navbar />} /> {/*state={props.state.friendsPage}*/}
         <div className='contentWrapper'>
           <Route path='/profile' 
-          render={() => <Profile state={props.state.profilePage} 
-                                 dispatch={props.dispatch}/>}/>
+          render={() => <Profile store={props.store} />}/>
                                 
           <Route exact path='/dialogs' 
-          render={()=><Dialogs state={props.state.dialogsPage} 
-                               photos={props.state.friendsPage}
-                               dispatch={props.dispatch}/>}/>
+          render={()=><DialogsContainer store={props.store} />}/>
 
           <Route path='/news' render={()=><News />}/>
 

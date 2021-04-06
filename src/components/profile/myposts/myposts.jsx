@@ -1,28 +1,21 @@
 import classes from './myposts.module.css'
 import Post from './post/post'
 
-
-import {addPostActionCreator} from './../../../redux/profileReducer'
-import {updateNewPostTextActionCreator} from './../../../redux/profileReducer'
-import {deletePostActionCreator} from './../../../redux/profileReducer'
-
-
 const Myposts = (props) => {
 
-    let postsElements = props.state.map((p)=><Post id={p.id} message={p.message} likescount={p.likescount} />)
+    let postsElements = props.posts.map((p)=><Post id={p.id} message={p.message} likescount={p.likescount} />)
 
-
-    let addPost = () =>{ 
-        props.dispatch(addPostActionCreator())
+    let onAddPost = () =>{ 
+        props.addPost()
     };
 
-    let onPostChange = (event) => {
-        let text = event.target.value; 
-        props.dispatch(updateNewPostTextActionCreator(text))        
+    let onPostChange = (e) => {
+        let text = e.target.value; 
+        props.updateNewPostText(text)      
     };
 
-    let deletePost = () =>{
-        props.dispatch(deletePostActionCreator())
+    let onDeletePost = () =>{
+        props.deletePost()
     };
 
     return(
@@ -34,9 +27,9 @@ const Myposts = (props) => {
                           value={props.newPostText}/>
                 <div className={classes.myposts__buttonHolder}>
                     <button className={classes.myposts__button}
-                            onClick={addPost}>Add post</button>
+                            onClick={onAddPost}>Add post</button>
                     <button className={classes.myposts__button}
-                            onClick={deletePost}>Cancel</button>
+                            onClick={onDeletePost}>Cancel</button>
                 </div>
             </div>
             <div className={classes.myposts__postList}>
