@@ -20,15 +20,15 @@ function App(props) {
         <Route render={()=><Navbar />} /> {/*state={props.state.friendsPage}*/}
         <div className='contentWrapper'>
           <Route path='/profile' 
-          render={() => <Profile store={props.store} />}/>
+          render={() => <Profile />}/> {/**store={props.store} */}
                                 
           <Route exact path='/dialogs' 
-          render={()=><DialogsContainer store={props.store} />}/>
+          render={()=><DialogsContainer />}/> {/**store={props.store} */}
 
           <Route path='/news' render={()=><News />}/>
 
           <Route path='/friends' 
-          render={()=><Friends state={props.state.friendsPage}/>}/>   
+          render={()=><Friends />}/> {/**state={props.state.friendsPage} */}  
 
           <Route path='/photos' render={()=><Photos />}/>
 
