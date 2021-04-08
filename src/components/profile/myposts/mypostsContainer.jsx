@@ -1,3 +1,4 @@
+import { connect } from 'react-redux';
 import {addPostActionCreator} from '../../../redux/profileReducer'
 import {updateNewPostTextActionCreator} from '../../../redux/profileReducer'
 import {deletePostActionCreator} from '../../../redux/profileReducer'

@@ -4,7 +4,7 @@ import Header from './components/header/header';
 import Navbar from './components/navbar/navbar';
 import Profile from './components/profile/profile';
 import News from './components/news/news'
-import Friends from './components/friends/friends';
+import FriendsContainer from './components/friends/friendsContainer';
 import Photos from './components/photos/photos';
 import Music from './components/music/music';
 import Videos from './components/videos/videos';
@@ -17,18 +17,17 @@ function App(props) {
   return (
       <div className='app__wrapper'>
         <Header />
-        <Route render={()=><Navbar />} /> {/*state={props.state.friendsPage}*/}
+        <Route render={()=><Navbar />} />
         <div className='contentWrapper'>
-          <Route path='/profile' 
-          render={() => <Profile />}/> {/**store={props.store} */}
+
+
+          <Route path='/profile' render={() => <Profile />}/>
                                 
-          <Route exact path='/dialogs' 
-          render={()=><DialogsContainer />}/> {/**store={props.store} */}
+          <Route exact path='/dialogs' render={()=><DialogsContainer />}/>
 
-          <Route path='/news' render={()=><News />}/>
+          <Route path='/friends' render={()=><FriendsContainer />}/> 
 
-          <Route path='/friends' 
-          render={()=><Friends />}/> {/**state={props.state.friendsPage} */}  
+          <Route path='/news' render={()=><News />}/>          
 
           <Route path='/photos' render={()=><Photos />}/>
 
@@ -37,6 +36,8 @@ function App(props) {
           <Route path='/videos' render={()=><Videos />}/>
 
           <Route path='/settings' render={()=><Settings />}/>
+
+
         </div>
         <Footer />
       </div>
