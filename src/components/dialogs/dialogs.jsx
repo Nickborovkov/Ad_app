@@ -6,9 +6,9 @@ import React from 'react';
 
 const Dialogs = (props) => {
 
-    let dialogsElements = props.users.map((d)=><User id={d.id} users={d.name}/>);
-    let messagesElements = props.messages.map((m)=><Dialog id={m.id} message={m.message} />)
-    let photosElements = props.avatars.map((p)=><Photo avatar={p.avatar}/>)
+    let dialogsElements = props.users.map((d)=><User key={d.id} id={d.id} users={d.name}/>);
+    let messagesElements = props.messages.map((m)=><Dialog key={m.id} id={m.id} message={m.message} />)
+    let photosElements = props.avatars.map((p)=><Photo key={p.id} avatar={p.avatar}/>)
 
     
     let onUpdateMessageText =(e) =>{

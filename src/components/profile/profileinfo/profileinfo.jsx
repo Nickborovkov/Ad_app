@@ -2,7 +2,7 @@ import classes from './profileinfo.module.css'
 import PersonalData from './personalData/personalData'
 
 const Profileinfo = (props) => {
-    let personalDataElements = props.profile.map(d => <PersonalData title={d.title} subtitle={d.subtitle}/>)
+    let personalDataElements = props.profile.map(d => <PersonalData key={d.id} title={d.title} subtitle={d.subtitle}/>)
 
     return(
         <div className={classes.profileinfo}>
