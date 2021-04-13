@@ -8,7 +8,6 @@ const Dialogs = (props) => {
 
     let dialogsElements = props.users.map((d)=><User key={d.id} id={d.id} users={d.name}/>);
     let messagesElements = props.messages.map((m)=><Dialog key={m.id} id={m.id} message={m.message} />)
-    let photosElements = props.avatars.map((p)=><Photo key={p.id} avatar={p.avatar}/>)
 
     
     let onUpdateMessageText =(e) =>{
@@ -28,9 +27,6 @@ const Dialogs = (props) => {
         <div className={classes.dialogs}>
             <h2 className={classes.dialogs__heading}>Dialogs</h2>
             <div className={classes.dialogs__inner}>
-                <div className={classes.dialogs__holder}>
-                    {photosElements}
-                </div>
                 <div className={classes.dialogs__holder}>
                     <h3 className={classes.dialogs__title}>Users</h3>
                     {dialogsElements}

@@ -1,0 +1,47 @@
+.users__heading{
+    text-align: center;
+    font-size: 40px;
+    color: #e83349;
+    padding-bottom: 50px;
+}
+.user__inner{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 20px auto;
+    box-shadow: 2px 2px 2px #eee, -2px -2px 2px #eee;
+    border-radius: 10px;
+    max-width: 700px;
+}
+.user__box{
+    width: 150px;
+    margin: 0 20px;
+}
+.user__property:first-child{
+    color: #e83349;
+    font-size: 30px;
+}
+.user__property:nth-child(2){
+    color: teal;
+    font-size: 20px;
+}
+.user__avatar{
+    width: 200px;
+    border-radius: 10px;
+}
+.user__button{
+    width: 100px;
+    height: 70px;
+    margin-top: 30px;
+    font-size: 20px;
+    background-color: transparent;
+    border: 1px solid teal;
+    color: #e83349;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+.user__button:hover{
+    color: #fff;
+    background-color: teal;
+
+}

@@ -9,7 +9,6 @@ let mapStateToProps = (state) => {
         newMessageText: state.dialogsPage.newMessageText,
         users: state.dialogsPage.users,
         messages: state.dialogsPage.messages,
-        avatars: state.friendsPage.users,
     }
 }
 
