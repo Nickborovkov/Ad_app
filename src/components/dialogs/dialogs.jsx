@@ -1,7 +1,6 @@
 import classes from './dialogs.module.css'
 import User from './user/user';
 import Dialog from './dialog/dialog';
-import Photo from './photo/photo';
 import React from 'react';
 
 const Dialogs = (props) => {
