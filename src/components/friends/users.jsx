@@ -7,21 +7,18 @@ import React from 'react'
 
 
 class Users extends React.Component {
-    getUsers = () => {
-        if(this.props.users.length === 0){
 
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users`).then(response => {
+    constructor (props){
+        super(props);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users`).then(response => {
                 this.props.setUsers(response.data.items)
             })
-        };
-    };
+    }
+
     render() {
         return <div>
         <h2 className={classes.users__heading}>Users</h2>
-
-        <button onClick={this.getUsers}>Get Users</button>
-        <div className={classes.user__holder}>
-            
+        <div className={classes.user__holder}>            
         {
             this.props.users.map(u => <div className={classes.user__inner} key = {u.id}> 
                 <img className={classes.user__avatar} src={u.photos.small != null ? u.photos.small: userPhoto} alt="1"/>
