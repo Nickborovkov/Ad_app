@@ -7,12 +7,10 @@ import React from 'react'
 
 
 class Users extends React.Component {
-
-    constructor (props){
-        super(props);
+    componentDidMount(){
         axios.get(`https://social-network.samuraijs.com/api/1.0/users`).then(response => {
-                this.props.setUsers(response.data.items)
-            })
+            this.props.setUsers(response.data.items)
+        })
     }
 
     render() {
@@ -21,7 +19,7 @@ class Users extends React.Component {
         <div className={classes.user__holder}>            
         {
             this.props.users.map(u => <div className={classes.user__inner} key = {u.id}> 
-                <img className={classes.user__avatar} src={u.photos.small != null ? u.photos.small: userPhoto} alt="1"/>
+                <img className={classes.user__avatar} src={u.photos.small != null ? u.photos.small : userPhoto} alt="1"/>
                 <div className={classes.user__box}>
                     <p className={classes.user__property}>{u.name}</p>
                     <p className={classes.user__property}>{u.status}</p>
