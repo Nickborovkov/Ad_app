@@ -1,6 +1,7 @@
 import classes from './users.module.css'
 import userPhoto from './../../assets/images/user.jpg'
 import { NavLink } from 'react-router-dom'
+import axios from 'axios'
 
 
 let Users = (props) => {
@@ -28,9 +29,29 @@ let Users = (props) => {
                     {
                         !u.followed 
                         ? <button className={classes.user__button_f} 
-                        onClick={()=>{props.follow(u.id)}}>Follow</button>
+                        onClick={()=>{
+                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+                                withCredentials:true
+,                                headers: {
+                                    "API-KEY": "634816f8-105c-4a9b-ae6b-0aaab45555f9"
+                                }
+                            }).then(response => {
+                                props.follow(u.id)
+                            })                           
+                            }
+                        }>Follow</button>
                         : <button className={classes.user__button_u} 
-                        onClick={()=>{props.unFollow(u.id)}}>Unfollow</button>
+                        onClick={()=>{
+                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                                withCredentials: true,
+                                headers: {
+                                    "API-KEY": "634816f8-105c-4a9b-ae6b-0aaab45555f9"
+                                }
+                            }).then(response => {
+                                props.unFollow(u.id)
+                            })
+                            }
+                        }>Unfollow</button>
                     }
                 </div>
             </div>)
