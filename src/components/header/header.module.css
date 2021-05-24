@@ -18,13 +18,19 @@
     color: #e83349;
     font-size: 30px;
 }
-.login{
+.header__login{
     font-size: 30px;
     color: white;
     text-decoration: none;
+    display: flex;
+    justify-content: center;
 }
-.defAvatar{
+.login__avatarWrapper{
     width: 50px;
+    margin-right: 20px;
+}
+.login__avatar{
+    width: 100%;
     border: 1px solid white;
     border-radius: 50%;
 }

@@ -1,0 +1,22 @@
+.preloaderSmall{
+    width: 20px;
+    height: 20px;
+    display: block;
+    background-color: tomato;
+    border-radius: 50%;
+    animation: preloaderSmallAnimation infinite 1s ease-out;
+}
+
+@keyframes preloaderSmallAnimation {
+    0% {transform: translateX(-50px)}
+    10% {transform: translateX(-40px)}
+    20% {transform: translateX(-30px)}
+    30% {transform: translateX(-20px)}
+    40% {transform: translateX(-10px)}
+    50% {transform: translateX(0)}
+    60% {transform: translateX(10px)}
+    70% {transform: translateX(20px)}
+    80% {transform: translateX(30px)}
+    90% {transform: translateX(40px)}
+    100% {transform: translateX(50px)}
+}
