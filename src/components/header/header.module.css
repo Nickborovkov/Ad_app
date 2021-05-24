@@ -12,9 +12,19 @@
     width: 100px;
 }
 .header__companyWrapper{
-    margin-left: 20%;
+    margin-right: 20%;
 }
 .header__company{
     color: #e83349;
     font-size: 30px;
+}
+.login{
+    font-size: 30px;
+    color: white;
+    text-decoration: none;
+}
+.defAvatar{
+    width: 50px;
+    border: 1px solid white;
+    border-radius: 50%;
 }
