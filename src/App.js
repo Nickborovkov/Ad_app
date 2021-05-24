@@ -2,10 +2,10 @@ import './App.css';
 import { Route } from 'react-router-dom';
 import Header from './components/header/header';
 import Navbar from './components/navbar/navbar';
-import Profile from './components/profile/profile';
 import Footer from './components/footer/footer';
 import DialogsContainer from './components/dialogs/dialogsContainer';
 import UsersContainer from './components/friends/usersContainer';
+import ProfileContainer from './components/profile/profileContainer';
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
         <Route render={()=><Navbar />} />
         <div className='contentWrapper'>
 
-          <Route path='/profile' render={() => <Profile />}/>
+          <Route path='/profile/:userId?' render={() => <ProfileContainer />}/>
                                 
           <Route exact path='/dialogs' render={()=><DialogsContainer />}/>
 

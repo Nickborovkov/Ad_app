@@ -1,48 +1,57 @@
 import classes from './users.module.css'
 import userPhoto from './../../assets/images/user.jpg'
+import { NavLink } from 'react-router-dom'
 
 
-import * as axios from 'axios'
-import React from 'react'
+let Users = (props) => {
 
-
-class Users extends React.Component {
-    componentDidMount(){
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users`).then(response => {
-            this.props.setUsers(response.data.items)
-        })
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    let pages = []
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i)        
     }
-
-    render() {
-        return <div>
+    return (
+        <div>
         <h2 className={classes.users__heading}>Users</h2>
         <div className={classes.user__holder}>            
         {
-            this.props.users.map(u => <div className={classes.user__inner} key = {u.id}> 
-                <img className={classes.user__avatar} src={u.photos.small != null ? u.photos.small : userPhoto} alt="1"/>
+            props.users.map(u => <div className={classes.user__inner} key = {u.id}>
+                <NavLink to = {`/profile/` + u.id}>
+                    <img className={classes.user__avatar} src={u.photos.small != null ? u.photos.small : userPhoto} alt="1"/>
+                </NavLink>
+                
                 <div className={classes.user__box}>
                     <p className={classes.user__property}>{u.name}</p>
                     <p className={classes.user__property}>{u.status}</p>
                 </div>
-                <div className={classes.user__box}>
-                    <p className={classes.user__property}>{`u.location.country`}</p>
-                    <p className={classes.user__property}>`{`u.location.city`}`</p>
-                </div>
                 <div>
                     {
-                        u.followed 
+                        !u.followed 
                         ? <button className={classes.user__button_f} 
-                        onClick={()=>{this.props.unfollow(u.id)}}>unfollow</button>
+                        onClick={()=>{props.follow(u.id)}}>Follow</button>
                         : <button className={classes.user__button_u} 
-                        onClick={()=>{this.props.follow(u.id)}}>follow</button>
+                        onClick={()=>{props.unFollow(u.id)}}>Unfollow</button>
                     }
                 </div>
             </div>)
         }
+        <div className={classes.users__pages}>
+            {
+            pages.map(p => {
+                return (
+                    <div className={classes.users__page}>
+                        <div className={props.currentPage === p && classes.selectedPage} onClick = { () => {props.onPageChanged(p)} }>
+                            {p}
+                        </div>
+                    </div>
+                )
+            })
+            }
+        </div>
+        
         </div>
     </div>
-    }
+    )
 }
 
-
-export default Users;
+export default Users
