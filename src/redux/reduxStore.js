@@ -2,7 +2,7 @@ import { combineReducers, createStore } from "redux";
 import profileReducer from './profileReducer'
 import dialogsReducer from './dialogsReducer'
 import usersReducer from "./usersReducer";
-import authReducer from "./authReducer";
+import authReducer from "./auth";
 
 
 let reducers = combineReducers({
@@ -14,8 +14,6 @@ let reducers = combineReducers({
 
 let store = createStore(reducers);
 
-
-//For debug
-window.store = store
-
 export default store;
+
+window.store = store

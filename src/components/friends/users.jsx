@@ -1,16 +1,17 @@
 import classes from './users.module.css'
 import userPhoto from './../../assets/images/user.jpg'
 import { NavLink } from 'react-router-dom'
-import axios from 'axios'
+import { usersAPI } from '../../api/api'
 
 
 let Users = (props) => {
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    let pageCount = Math.ceil(props.totalUserCount / props.pageSize)
     let pages = []
-    for (let i = 1; i <= pagesCount; i++) {
+    for (let i = 1; i <= pageCount; i++) {
         pages.push(i)        
     }
+
     return (
         <div>
         <h2 className={classes.users__heading}>Users</h2>
@@ -30,34 +31,29 @@ let Users = (props) => {
                         !u.followed 
                         ? <button className={classes.user__button_f} 
                         onClick={()=>{
-                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                                withCredentials:true
-,                                headers: {
-                                    "API-KEY": "634816f8-105c-4a9b-ae6b-0aaab45555f9"
+                            usersAPI.followUser(u.id).then(data => {
+                                if(data.resultCode === 0){
+                                    props.follow(u.id)
                                 }
-                            }).then(response => {
-                                props.follow(u.id)
-                            })                           
-                            }
-                        }>Follow</button>
+                            })
+                            }}
+                        >Follow</button>
                         : <button className={classes.user__button_u} 
                         onClick={()=>{
-                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                withCredentials: true,
-                                headers: {
-                                    "API-KEY": "634816f8-105c-4a9b-ae6b-0aaab45555f9"
+                            usersAPI.unFollowUser(u.id).then(data => {
+                                if(data.resultCode === 0){
+                                    props.unFollow(u.id)
                                 }
-                            }).then(response => {
-                                props.unFollow(u.id)
-                            })
-                            }
-                        }>Unfollow</button>
+                            })                           
+                            }}
+                        >Unfollow</button>
                     }
                 </div>
             </div>)
-        }
+        }              
+        </div>
         <div className={classes.users__pages}>
-            {
+          {
             pages.map(p => {
                 return (
                     <div className={classes.users__page}>
@@ -65,11 +61,10 @@ let Users = (props) => {
                             {p}
                         </div>
                     </div>
+                    
                 )
             })
-            }
-        </div>
-        
+        }   
         </div>
     </div>
     )

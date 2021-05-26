@@ -1,7 +1,7 @@
 import classes from './header.module.css'
 import logo from './../../images/logo.jpg'
-import { NavLink } from 'react-router-dom'
 import PreloaderSmall from '../../common/preloaderSmall/preloaderSmall';
+import { NavLink } from 'react-router-dom';
 
 const Header = (props) => {
     return(
@@ -12,19 +12,17 @@ const Header = (props) => {
             <div className={classes.header__companyWrapper}>
                 <p className={classes.header__company}>Samurai's Network</p>
             </div>
-            {!props.currentUser ? <PreloaderSmall /> : <div className = {classes.header__login}>
-                
-                <div className={classes.login__avatarWrapper}>
-                    <img className={classes.login__avatar} src={!props.currentUser.photos.small ? logo : props.currentUser.photos.small} alt="avatar" />
-                </div>
-                <div>
-                    {!props.login ? <NavLink to='/login'>Login</NavLink>: props.login}
-                </div>
-                
-                
-            </div>}
+            <div className={classes.header__login}>
+                {!props.isAuthorised || !props.currentUser ? <NavLink className = {classes.login__link} to={`/login`}>Login</NavLink> : <div className={classes.header__login}>
+                    <div className={classes.login__avatarWrapper}>
+                         <img className={classes.login__avatar} src={!props.currentUser.photos.small ? logo : props.currentUser.photos.small} alt="avatarSmall" />
+                    </div>                   
+                    {props.login}
+                    </div>}
+            </div>
             
-        </div>
+                
+            </div>
     );
 };
 

@@ -19,7 +19,7 @@ const Profileinfo = (props) => {
             </div>
             <div className={classes.info__holder}>
                 <p className={classes.info__property}>Samurai's job:</p>
-                <p className={classes.info__property}>{props.profile.lookingForAJob ? 'This samurai is looking for a job now' : 'This samurai is currently employed'}</p>
+                <p className={classes.info__property}>{props.profile.lookingForAJob ? `This samurai is now looking for a job` : `This samurai is currently employed`}</p>
                 <p className={classes.info__property}>{props.profile.lookingForAJobDescription}</p>
             </div>          
         </div>

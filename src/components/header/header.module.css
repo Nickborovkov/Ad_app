@@ -34,3 +34,8 @@
     border: 1px solid white;
     border-radius: 50%;
 }
+.login__link{
+    font-size: 30px;
+    color: white;
+    text-decoration: none;
+}
