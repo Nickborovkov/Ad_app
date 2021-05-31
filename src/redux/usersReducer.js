@@ -6,6 +6,7 @@ const SET_USERS = `SET_USERS`
 const SET_TOTAL_USER_COUNT = `SET_TOTAL_USER_COUNT`
 const SET_CURRENT_PAGE = `SET_CURRENT_PAGE`
 const TOGGLE_IS_LOADING = `TOGGLE_IS_LOADING`
+const TOGGLE_IS_FOLLOWING_RESPONSE = `TOGGLE_IS_FOLLOWING_RESPONSE`
 
 let initialState = {
     users: [],
@@ -13,6 +14,7 @@ let initialState = {
     currentPage: 1,
     totalUserCount: 0,
     isLoading: false,
+    followingInProgress: []
 }
 
 let usersReducer = (state = initialState, action) => {
@@ -57,6 +59,13 @@ let usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: action.loadingStatus
+            }
+        case TOGGLE_IS_FOLLOWING_RESPONSE:
+            return {
+                ...state,
+                followingInProgress: action.followingInProgress
+                ? [...state.followingInProgress, action.userId]
+                : [state.followingInProgress.filter(id => id !== action.userId)]
             }       
         default:
             return state 
@@ -73,6 +82,7 @@ export const setUsers = (users) => ({type: SET_USERS, users})
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
 export const setTotalUserCount = (totalCount) => ({type: SET_TOTAL_USER_COUNT, totalCount})
 export const setToggleIsLoading = (loadingStatus) => ({type: TOGGLE_IS_LOADING, loadingStatus})
+export const setFollowingInProgress = (followingInProgress, userId) => ( { type: TOGGLE_IS_FOLLOWING_RESPONSE,  followingInProgress, userId} )
 
 //thunks
 
@@ -88,20 +98,24 @@ export const getUsers = (currentPage, pageSize) => {
 }
 
 export const subscribeUser = (userId) => {
-    return (dispatch) => {       
+    return (dispatch) => {
+        dispatch(setFollowingInProgress(true, userId))       
         usersAPI.followUser(userId).then(data => {
             if(data.resultCode === 0){
                 dispatch(follow(userId))
             }
+            dispatch(setFollowingInProgress(false, userId))    
         })
     }
 }
 export const unSubscribeUser = (userId) => {
     return (dispatch) => {
+        dispatch(setFollowingInProgress(true, userId))    
         usersAPI.unFollowUser(userId).then(data => {
             if(data.resultCode === 0){
                 dispatch(unFollow(userId))
             }
+            dispatch(setFollowingInProgress(false, userId))    
         })
     }
 }

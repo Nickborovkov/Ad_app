@@ -4,6 +4,8 @@ import { getUsers, setCurrentPage, setToggleIsLoading, subscribeUser, unSubscrib
 import Users from './users';
 import Preloader from './../../common/preloader/preloader'
 import { compose } from 'redux';
+import { withRouter } from 'react-router';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 
 
 class UsersContainer extends React.Component{
@@ -27,10 +29,12 @@ let mapSetStateToProps = (state) => {
         currentPage:state.usersPage.currentPage,
         totalUserCount:state.usersPage.totalUserCount,
         isLoading: state.usersPage.isLoading,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 
 
 export default compose(
-    connect(mapSetStateToProps, {setCurrentPage, setToggleIsLoading, getUsers,subscribeUser, unSubscribeUser}) 
+    connect(mapSetStateToProps, {setCurrentPage, setToggleIsLoading, getUsers,subscribeUser, unSubscribeUser}),
+    withAuthRedirect
 )(UsersContainer)

@@ -66,6 +66,12 @@
     display: block;
     margin: auto;
 }
+.user__button_f:disabled{
+    background-color: #666;
+}
+.user__button_u:disabled{
+    background-color: #666;
+}
 .users__pages{
     display: flex;
     flex-wrap: wrap;

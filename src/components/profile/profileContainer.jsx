@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { compose } from 'redux'
 import Preloader from '../../common/preloader/preloader'
+import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 import { setUserProfile } from '../../redux/profileReducer'
 import Profile from './profile'
 
@@ -30,4 +31,5 @@ let mapStateToProps = (state) => {
 export default compose(
     connect (mapStateToProps, {setUserProfile}),
     withRouter,
+    withAuthRedirect,
 ) (ProfileContainer)
