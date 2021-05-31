@@ -1,3 +1,5 @@
+import { usersAPI } from "../api/api";
+
 const addPost = `ADD-POST`;
 const updateNewPostText = `UPDATE-NEW-POST-TEXT`;
 const deletePost = `DELETE-POST`;
@@ -43,8 +45,19 @@ const profileReducer = (state = initialState, action) => {
 };
 export default profileReducer;
 
+//action crators
+
 export const addPostActionCreator = () => ({type: addPost});
 export const updateNewPostTextActionCreator = (text) => ({type: updateNewPostText, newText: text});
 export const deletePostActionCreator = () => ({type: deletePost});
 export const setUSerData = (profile) => ({type: SET_USER_DATA, profile});
 
+//thunks
+
+export const  setUserProfile = (userId) => {
+    return (dispatch) => {
+        usersAPI.getProfile(userId).then(data => {
+            dispatch(setUSerData(data))
+        })
+    }
+}

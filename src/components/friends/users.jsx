@@ -1,7 +1,6 @@
 import classes from './users.module.css'
 import userPhoto from './../../assets/images/user.jpg'
 import { NavLink } from 'react-router-dom'
-import { usersAPI } from '../../api/api'
 
 
 let Users = (props) => {
@@ -25,27 +24,16 @@ let Users = (props) => {
                 <div className={classes.user__box}>
                     <p className={classes.user__property}>{u.name}</p>
                     <p className={classes.user__property}>{u.status}</p>
+                    <p className={classes.user__property}>{u.id}</p>
                 </div>
                 <div>
                     {
                         !u.followed 
                         ? <button className={classes.user__button_f} 
-                        onClick={()=>{
-                            usersAPI.followUser(u.id).then(data => {
-                                if(data.resultCode === 0){
-                                    props.follow(u.id)
-                                }
-                            })
-                            }}
+                        onClick={ () => { props.subscribeUser(u.id) } }
                         >Follow</button>
                         : <button className={classes.user__button_u} 
-                        onClick={()=>{
-                            usersAPI.unFollowUser(u.id).then(data => {
-                                if(data.resultCode === 0){
-                                    props.unFollow(u.id)
-                                }
-                            })                           
-                            }}
+                        onClick={ () => { props.unSubscribeUser(u.id) } }
                         >Unfollow</button>
                     }
                 </div>

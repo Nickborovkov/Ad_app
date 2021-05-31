@@ -1,3 +1,5 @@
+import { usersAPI } from "../api/api"
+
 const FOLLOW = `FOLLOW`
 const UNFOLLOW = `UNFOLLOW`
 const SET_USERS = `SET_USERS`
@@ -63,9 +65,43 @@ let usersReducer = (state = initialState, action) => {
 
 export default usersReducer;
 
+//action creators
+
 export const follow = (userId) => ({type: FOLLOW, userId})
 export const unFollow = (userId) => ({type: UNFOLLOW, userId})
 export const setUsers = (users) => ({type: SET_USERS, users})
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
 export const setTotalUserCount = (totalCount) => ({type: SET_TOTAL_USER_COUNT, totalCount})
 export const setToggleIsLoading = (loadingStatus) => ({type: TOGGLE_IS_LOADING, loadingStatus})
+
+//thunks
+
+export const getUsers = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(setToggleIsLoading(true))
+        usersAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(setToggleIsLoading(false))
+            dispatch(setUsers(data.items))
+            dispatch(setTotalUserCount(data.totalCount))
+        })
+    }
+}
+
+export const subscribeUser = (userId) => {
+    return (dispatch) => {       
+        usersAPI.followUser(userId).then(data => {
+            if(data.resultCode === 0){
+                dispatch(follow(userId))
+            }
+        })
+    }
+}
+export const unSubscribeUser = (userId) => {
+    return (dispatch) => {
+        usersAPI.unFollowUser(userId).then(data => {
+            if(data.resultCode === 0){
+                dispatch(unFollow(userId))
+            }
+        })
+    }
+}
