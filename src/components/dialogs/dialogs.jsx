@@ -1,52 +1,43 @@
-import classes from './dialogs.module.css'
-import User from './user/user';
-import Dialog from './dialog/dialog';
-import React from 'react';
+import React from "react";
+import styles from './dialogs.module.css'
+import {Field, reduxForm} from "redux-form";
 
-const Dialogs = (props) => {
+let Dialogs = (props) => {
 
-    let dialogsElements = props.users.map((d)=><User key={d.id} id={d.id} users={d.name}/>);
-    let messagesElements = props.messages.map((m)=><Dialog key={m.id} id={m.id} message={m.message} />)
-
-    
-    let onUpdateMessageText =(e) =>{
-        let text = e.target.value
-        props.updateMessageText(text);
-    };
-    let onAddMessage = () =>{
-        props.addMessage();
+    let onAddMessage = (values) => {
+        props.addNewMessage(values.userName, values.userMessage)
     }
-    let onClearMessage = () =>{
-        props.clearMessage();
-    }
-    
 
-
-    return(
-        <div className={classes.dialogs}>
-            <h2 className={classes.dialogs__heading}>Dialogs</h2>
-            <div className={classes.dialogs__inner}>
-                <div className={classes.dialogs__holder}>
-                    <h3 className={classes.dialogs__title}>Users</h3>
-                    {dialogsElements}
-                </div>
-                <div className={classes.dialogs__holder}>
-                    <h3 className={classes.dialogs__title}>Chats</h3>
-                    {messagesElements}
-                </div>
+    return (
+        <div className={styles.dialogs}>
+            <h2 className={styles.title}>Dialogs</h2>
+            <div className={styles.dialogsHolder}>
+                {
+                    props.dialogs.map(d => {
+                        return (
+                            <div key={d.id} className={styles.dialogsItem}>
+                                <div className={styles.name}>{d.user}</div>
+                                <div className={styles.message}>{d.message}</div>
+                            </div>
+                        )
+                    })
+                }
             </div>
-            <textarea className={classes.temp__textarea}
-                      value={props.newMessageText}
-                      onChange={onUpdateMessageText}/>
-            <div className={classes.temp__buttonHolder}>
-                <button className={classes.temp__button}
-                        onClick={onAddMessage}>Send</button>
-                <button className={classes.temp__button}
-                        onClick={onClearMessage}>Clear</button>
-            </div>
-
+            <DialogsFromRedux onSubmit={onAddMessage}/>
         </div>
-    );
-};
+    )
+}
 
-export default Dialogs;
+export default Dialogs
+
+let DialogsForm = (props) => {
+    return <form className={styles.dialogsForm} onSubmit={props.handleSubmit}>
+        <Field className={styles.userName} component='input' name='userName'/>
+        <Field className={styles.userMessage} component='textarea' name='userMessage'/>
+        <button className={styles.submitBtn}>Send</button>
+    </form>
+}
+
+let DialogsFromRedux = reduxForm({
+    form: `newMessageForm`
+})(DialogsForm)

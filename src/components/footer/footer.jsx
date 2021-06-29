@@ -1,11 +1,12 @@
-import classes from './footer.module.css'
+import styles from './footer.module.css'
+import React from "react";
 
-const Footer = () => {
-    return(
-        <div className={classes.footer}>
-            <p className={classes.footer__copyright}>Made by Nick Borovkov ©</p>
+let Footer = () => {
+    return (
+        <div className={styles.footer}>
+            <p className={styles.author}>Made by ITWarrior</p>
         </div>
-    );
-};
+    )
+}
 
-export default Footer;
+export default Footer

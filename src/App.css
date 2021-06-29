@@ -1,13 +1,16 @@
-.app__wrapper{
-  max-width: 1600px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-areas: 
-  'header header header header header header header header'
-  'navbar content content content content content content content'
-  'footer footer footer footer footer footer footer footer';
-  box-shadow: 3px 3px 3px #eee, -3px -3px 3px #eee;
+*{
+  margin: 0;
+  padding: 0;
 }
-.contentWrapper{
-  grid-area: content;
+.appWrapper{
+  max-width: 1400px;
+  margin: 0 auto;
+  box-shadow: 3px 3px 3px #eeeeee, -3px -3px 3px #eeeeee;
+}
+.appInner{
+  display: flex;
+  justify-content: center;
+}
+.appContent{
+  width: 1100px;
 }

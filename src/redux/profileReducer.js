@@ -1,63 +1,52 @@
-import { usersAPI } from "../api/api";
+import {profileAPI} from "../API/ajaxAPI";
 
-const addPost = `ADD-POST`;
-const updateNewPostText = `UPDATE-NEW-POST-TEXT`;
-const deletePost = `DELETE-POST`;
-const SET_USER_DATA = `SET_AUTH_USER_DATA`
+let ADD_POST = `ADD_POST`
+let SET_PROFILE = `SET_PROFILE`
 
 let initialState = {
     posts: [
-        {id:1, message:`Hi`, likescount: 6},
-        {id:2, message:`Konichiva`, likescount: 3},
-        {id:3, message:`Good Evening`, likescount: 11},
-        {id:4, message:`Fuck you all`, likescount: 1},
+        {id: 1, post: `DefaultPostText1`, likesCount: `13`},
+        {id: 2, post: `DefaultPostText2`, likesCount: `4`},
+        {id: 3, post: `DefaultPostText3`, likesCount: `5`},
+        {id: 4, post: `DefaultPostText4`, likesCount: `8`},
     ],
-    newPostText: ``,
     profile: null,
 }
 
-const profileReducer = (state = initialState, action) => {
+let profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case addPost:
+        case ADD_POST:
             return {
                 ...state,
-                posts: [...state.posts, {id: 5, message: state.newPostText, likescount: 1}],
-                newPostText: ``,
+                posts: [...state.posts, {id: 5, post: action.postText, likesCount: 111}]
             }
-        case updateNewPostText:
+        case SET_PROFILE:
             return {
                 ...state,
-                newPostText: action.newText,
+                profile: action.profile
             }
-        case deletePost:
-            return {
-                ...state,
-                newPostText: ``,
-        }
-        case SET_USER_DATA:
-            return {
-                ...state,
-                profile: action.profile,
-            }
-        default:            
+        default:
             return state
     }
-};
-export default profileReducer;
+}
 
-//action crators
+export default profileReducer
 
-export const addPostActionCreator = () => ({type: addPost});
-export const updateNewPostTextActionCreator = (text) => ({type: updateNewPostText, newText: text});
-export const deletePostActionCreator = () => ({type: deletePost});
-export const setUSerData = (profile) => ({type: SET_USER_DATA, profile});
+//AC
+let addPost = (postText) => ( { type: ADD_POST, postText } )
+let setProfile = (profile) => ( { type: SET_PROFILE, profile } )
 
-//thunks
-
-export const  setUserProfile = (userId) => {
+//THUNK
+export let addNewPost = (postText) => {
     return (dispatch) => {
-        usersAPI.getProfile(userId).then(data => {
-            dispatch(setUSerData(data))
+        dispatch(addPost(postText))
+    }
+}
+
+export let setUserProfile = (userId) => {
+    return (dispatch) => {
+        profileAPI.getProfile(userId).then(response => {
+            dispatch(setProfile(response.data))
         })
     }
 }

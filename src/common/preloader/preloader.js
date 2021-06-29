@@ -1,12 +1,8 @@
-import React from 'react'
-import classes from './preloader.module.css'
+import React from "react";
+import styles from './preloader.module.css'
 
 let Preloader = () => {
-    return (
-        <div>
-            <p className = {classes.preloader}>Loading...</p>
-        </div>
-    )
+    return <p className={styles.preloader}>Loading...</p>
 }
 
 export default Preloader

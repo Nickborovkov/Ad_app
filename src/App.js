@@ -1,30 +1,28 @@
 import './App.css';
-import { Route } from 'react-router-dom';
-import Navbar from './components/navbar/navbar';
-import Footer from './components/footer/footer';
-import DialogsContainer from './components/dialogs/dialogsContainer';
-import UsersContainer from './components/friends/usersContainer';
-import ProfileContainer from './components/profile/profileContainer';
-import HeaderContainer from './components/header/headerContainer';
-
+import React from "react";
+import Footer from "./components/footer/footer";
+import Navbar from "./components/navbar/navbar";
+import {Route} from "react-router-dom";
+import DialogsContainer from "./components/dialogs/dialogsContainer";
+import UsersContainer from "./components/users/usersContainer";
+import ProfileContainer from "./components/profile/profileContainer";
+import Header from "./components/header/header";
 
 function App() {
   return (
-      <div className='app__wrapper'>
-        <HeaderContainer />
-        <Route render={()=><Navbar />} />
-        <div className='contentWrapper'>
-
-          <Route path='/profile/:userId?' render={() => <ProfileContainer />}/>
-                                
-          <Route exact path='/dialogs' render={()=><DialogsContainer />}/>
-
-          <Route path='/users' render={() => <UsersContainer />}/>
-
+    <div className="appWrapper">
+      <Header />
+      <div className='appInner'>
+          <Navbar/>
+        <div className='appContent'>
+            <Route path='/profile/:userId?' render={ () => <ProfileContainer /> }/>
+            <Route path='/dialogs' render={ () => <DialogsContainer /> }/>
+            <Route path='/users' render={ () => <UsersContainer /> }/>
         </div>
-        <Footer />
       </div>
- );
+        <Footer/>
+    </div>
+  );
 }
 
 export default App;

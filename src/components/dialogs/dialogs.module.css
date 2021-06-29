@@ -1,72 +1,68 @@
 .dialogs{
     padding-bottom: 100px;
 }
-.dialogs__heading{
+.title{
     text-align: center;
-    font-size: 40px;
-    color: #e83349;
-    padding-bottom: 50px;
+    font-size: 60px;
+    padding: 50px 0;
+    color: #ff7f3a;
 }
-.dialogs__inner{
-    display: flex;
-    justify-content: center;
+.dialogsHolder{
+    width: 800px;
+    margin: 30px auto;
 }
-.dialogs__holder{
-    margin: 0 5%;
+.dialogsItem{
+    box-shadow: 2px 2px 2px #eee, -2px -2px 2px #eeeeee;
+    margin: 20px 0;
+    padding: 5px;
 }
-.dialogs__title{
-    color: teal;
-    font-size: 40px;
-}
-.dialogs__userItem{
+.name{
+    color: #ff7f3a;
     font-size: 30px;
-    text-decoration: none;
-    color: #333;
+}
+.message{
+    color: #666666;
+    font-size: 20px;
+    padding-left: 150px;
+}
+.dialogsForm{
+    margin: 100px auto 0 auto;
+}
+.userName{
     display: block;
-    padding-bottom: 30px;
-}
-.dialogs__messageItem{
-    font-size: 30px;
-}
-.dialogs__avatar{
-    width: 100px;
+    width: 600px;
+    height: 40px;
+    padding: 20px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
     border-radius: 10px;
+    border: 2px solid #ff7f3a;
+    margin: 0 auto 30px auto;
+    font-size: 20px;
 }
-.dialogs__avatarWrapper{
-    width: 100%;    
-}
-.dialogs__message{
-    background-color: rgba(0,0,0,.2);
-    text-align: center;
-    width: 500px;
-    height: 100px;
+.userMessage{
     display: block;
-}
-.temp__textarea{
     width: 600px;
     height: 300px;
     padding: 20px;
-    display: block;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border: 2px solid #ff7f3a;
     margin: 0 auto;
-    border: 5px solid tomato;
-    border-radius: 10px;
-    font-size: 40px;
-    color: teal;
-    margin-top: 100px;
+    font-size: 20px;
+    resize: none;
 }
-.temp__buttonHolder{
-    display: flex;
-    justify-content: center;
-    margin: 50px 0;
-}
-.temp__button{
-    width: 200px;
-    height: 60px;
-    background-color: tomato;
-    color: white;
-    font-size: 30px;
-    text-align: center;
+.submitBtn{
+    color: #ffffff;
+    background-color: #ff7f3a;
     border: none;
+    width: 150px;
+    height: 50px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
     border-radius: 10px;
-    margin: 0 30px;
+    display: block;
+    margin: 30px auto;
+    font-size: 30px;
 }

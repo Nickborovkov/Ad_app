@@ -1,22 +1,22 @@
 .preloader{
+    font-size: 100px;
     text-align: center;
-    font-size: 50px;
     padding: 100px 0;
-    color: tomato;
-    animation: preloaderAnmation infinite linear 1s;
-    -webkit-animation: preloaderAnmation infinite linear 1s;
+    color: #99CEFF;
+    font-weight: bold;
+    animation: preloaderAnimation infinite linear 1s;
 }
 
-@keyframes preloaderAnmation {
-    0% {opacity: 0;}
-    10% {opacity: 0.1;}
-    20% {opacity: 0.2;}
-    30% {opacity: 0.3;}
-    40% {opacity: 0.4;}
-    50% {opacity: 0.5;}
-    60% {opacity: 0.6;}
-    70% {opacity: 0.7;}
-    80% {opacity: 0.8;}
-    90% {opacity: 0.9;}
-    100% {opacity: 1;}
+@keyframes preloaderAnimation {
+    0% {opacity: 0}
+    10% {opacity: 0.1}
+    20% {opacity: 0.2}
+    30% {opacity: 0.3}
+    40% {opacity: 0.4}
+    50% {opacity: 0.5}
+    60% {opacity: 0.6}
+    70% {opacity: 0.7}
+    80% {opacity: 0.8}
+    90% {opacity: 0.9}
+    100% {opacity: 1}
 }

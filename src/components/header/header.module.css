@@ -1,41 +1,33 @@
 .header{
     display: flex;
     justify-content: center;
-    background-color: #282a29;
-    padding: 20px 0;
-    grid-area: header;
+    background-color: #007EF5;
+    padding: 10px 0;
 }
-.header__logoWrapper{
+.logo{
+    width: 50px;
     margin-right: 20%;
 }
-.header__logo{
-    width: 100px;
-}
-.header__companyWrapper{
+.name{
+    color: #ffffff;
+    font-size: 20px;
     margin-right: 20%;
 }
-.header__company{
-    color: #e83349;
-    font-size: 30px;
+.login{
+    color: #ffffff;
+    font-size: 20px;
 }
-.header__login{
-    font-size: 30px;
-    color: white;
-    text-decoration: none;
+.authHolder{
     display: flex;
     justify-content: center;
 }
-.login__avatarWrapper{
-    width: 50px;
-    margin-right: 20px;
+.avatar{
+    width: 40px;
 }
-.login__avatar{
-    width: 100%;
-    border: 1px solid white;
-    border-radius: 50%;
+.login{
+    display: block;
+    margin-left: 20px;
 }
-.login__link{
-    font-size: 30px;
-    color: white;
+.link{
     text-decoration: none;
 }

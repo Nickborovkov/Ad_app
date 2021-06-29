@@ -1,9 +1,8 @@
-import classes from './preloaderSmall.module.css'
+import React from "react";
+import styles from './preloaderSmall.module.css'
 
 let PreloaderSmall = () => {
-    return (
-        <div className={classes.preloaderSmall}>
-        </div>
-    )
+    return <div className={styles.preloaderSmall}></div>
 }
+
 export default PreloaderSmall
