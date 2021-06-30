@@ -45,6 +45,9 @@
     -moz-border-radius: 10px;
     border-radius: 10px;
 }
+.followBtn:disabled{
+    background-color: #666666;
+}
 .pages{
     display: flex;
     justify-content: center;

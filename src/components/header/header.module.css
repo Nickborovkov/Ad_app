@@ -25,9 +25,26 @@
     width: 40px;
 }
 .login{
-    display: block;
-    margin-left: 20px;
+    font-size: 30px;
+    text-decoration: none;
+    color: #ff7f3a;
 }
 .link{
     text-decoration: none;
+}
+.loginLink{
+    text-decoration: none;
+}
+.userHolder{
+    display: flex;
+    justify-content: center;
+}
+.loginAvatar{
+    width: 40px;
+    display: block;
+    margin-right: 20px;
+}
+.loginUser{
+    font-size: 30px;
+    color: #ffffff;
 }

@@ -1,4 +1,4 @@
-import {profileAPI} from "../API/ajaxAPI";
+import {profileAPI} from "../api/ajaxAPI";
 
 let ADD_POST = `ADD_POST`
 let SET_PROFILE = `SET_PROFILE`
