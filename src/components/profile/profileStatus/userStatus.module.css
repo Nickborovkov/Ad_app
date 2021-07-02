@@ -1,0 +1,48 @@
+.statusHint{
+    display: block;
+    text-align: right;
+    padding-right: 100px;
+    color: lightslategrey;
+    margin-top: 30px;
+}
+.status{
+    display: block;
+    width: 80%;
+    padding: 10px;
+    height: 40px;
+    margin: 30px auto 0 auto;
+    font-size: 30px;
+    text-align: center;
+    color: #666666;
+}
+
+.buttonsHolder{
+    width: 90%;
+    margin: 29px auto;
+    display: flex;
+    justify-content: center;
+    padding-left: 190px;
+    cursor: pointer;
+}
+.okButton{
+    color: lightslategrey;
+    font-size: 16px;
+    display: block;
+    width: 50px;
+    cursor: pointer;
+}
+.cancelButton{
+    color: lightslategrey;
+    font-size: 16px;
+    display: block;
+    width: 50px;
+    cursor: pointer;
+}
+.statusEdit{
+    display: block;
+    width: 80%;
+    padding: 10px;
+    height: 40px;
+    margin: 30px auto 0 auto;
+    font-size: 20px;
+}

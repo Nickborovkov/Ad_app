@@ -2,6 +2,7 @@ import {profileAPI} from "../api/ajaxAPI";
 
 let ADD_POST = `ADD_POST`
 let SET_PROFILE = `SET_PROFILE`
+let GET_USER_STATUS = `GET_USER_STATUS`
 
 let initialState = {
     posts: [
@@ -11,6 +12,7 @@ let initialState = {
         {id: 4, post: `DefaultPostText4`, likesCount: `8`},
     ],
     profile: null,
+    userStatus: undefined,
 }
 
 let profileReducer = (state = initialState, action) => {
@@ -25,6 +27,11 @@ let profileReducer = (state = initialState, action) => {
                 ...state,
                 profile: action.profile
             }
+        case GET_USER_STATUS:
+            return {
+                ...state,
+                userStatus: action.userStatus
+            }
         default:
             return state
     }
@@ -35,6 +42,7 @@ export default profileReducer
 //AC
 let addPost = (postText) => ( { type: ADD_POST, postText } )
 let setProfile = (profile) => ( { type: SET_PROFILE, profile } )
+let getUserStatus = (userStatus) => ( { type: GET_USER_STATUS, userStatus } )
 
 //THUNK
 export let addNewPost = (postText) => {
@@ -47,6 +55,22 @@ export let setUserProfile = (userId) => {
     return (dispatch) => {
         profileAPI.getProfile(userId).then(response => {
             dispatch(setProfile(response.data))
+        })
+    }
+}
+
+export let setUserStatus = (userId) => {
+    return (dispatch) => {
+        profileAPI.getStatus(userId).then(response => {
+            dispatch(getUserStatus(response.data))
+        })
+    }
+}
+
+export let updateUserStatus = (status) => {
+    return (dispatch) => {
+        profileAPI.updateStatus(status).then(response => {
+            dispatch(getUserStatus(status))
         })
     }
 }
