@@ -25,6 +25,9 @@
     width: 90%;
     display: block;
     margin: 0 auto;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
 .propery{
     text-align: center;

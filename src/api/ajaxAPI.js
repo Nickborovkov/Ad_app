@@ -38,5 +38,8 @@ export let followAPI = {
 export let authAPI = {
     authUser() {
         return instance.get(`auth/me`)
+    },
+    loginUser(loginData) {
+        return instance.post(`auth/login` , {loginData})
     }
 }
