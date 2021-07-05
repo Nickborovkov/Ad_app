@@ -27,7 +27,15 @@
 .login{
     font-size: 30px;
     text-decoration: none;
-    color: #ff7f3a;
+    color: #007EF5;
+    background-color: #ffffff;
+    width: 120px;
+    height: 40px;
+    display: block;
+    text-align: center;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
 .link{
     text-decoration: none;
@@ -47,4 +55,16 @@
 .loginUser{
     font-size: 30px;
     color: #ffffff;
+    margin-right: 20px;
+}
+.loginButton{
+    width: 120px;
+    height: 40px;
+    font-size: 30px;
+    color: #007EF5;
+    background-color: #ffffff;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border: none;
 }

@@ -39,7 +39,10 @@ export let authAPI = {
     authUser() {
         return instance.get(`auth/me`)
     },
-    loginUser(loginData) {
-        return instance.post(`auth/login` , {loginData})
+    loginUser(email, password, rememberMe = false) {
+        return instance.post(`auth/login` , {email, password, rememberMe})
+    },
+    logoutUser() {
+        return instance.delete(`auth/login`)
     }
 }

@@ -1,11 +1,12 @@
 import styles from './header.module.css'
 import React from "react";
 import logo from '../../assets/images/logo2.png'
-import {NavLink} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
 import PreloaderSmall from "../../common/preloaderSmall/preloaderSmall";
 import defaultAvatar from '../../assets/images/defaultUser.png'
 
 let Header = (props) => {
+
     return (
         <div className={styles.header}>
             <img className={styles.logo} src={logo} alt="logo"/>
@@ -26,6 +27,8 @@ let Header = (props) => {
                                                 ? props.currentUser.photos.small
                                                 : defaultAvatar} alt="avatar"/>
                                             <p className={styles.loginUser}>{props.login}</p>
+                                            <button className={styles.loginButton}
+                                                    onClick={ () => {props.logOutUser()} }>Logout</button>
                                         </div>
                                     </NavLink>
                             }

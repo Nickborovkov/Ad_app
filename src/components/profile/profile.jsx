@@ -3,6 +3,12 @@ import styles from './profile.module.css'
 import defaultAvatar from '../../assets/images/defaultUser.png'
 import {Field, reduxForm} from "redux-form";
 import ProfileStatus from "./profileStatus/userStatus";
+import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
+import {TextArea} from "../../common/FormsControls/FormsControls";
+
+
+const maxLength10 = maxLengthCreator(200)
+
 
 let Profile = (props) => {
 
@@ -90,9 +96,10 @@ let PostsForm = (props) => {
     return <form className={styles.postForm}
                  onSubmit={props.handleSubmit}>
         <Field className={styles.textarea}
-               component = 'textarea'
+               component = {TextArea}
                name='newPostText'
-               placeholder='Enter your text here...'/>
+               placeholder='Enter your text here...'
+               validate={[requiredField, maxLength10]}/>
         <button className={styles.postBtn}>Send</button>
     </form>
 }
