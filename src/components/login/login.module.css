@@ -43,3 +43,13 @@
     display: block;
     font-size: 30px;
 }
+.errorDiv{
+    color: #ffffff;
+    background-color: red;
+    font-size: 30px;
+    text-align: center;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    padding: 10px;
+}

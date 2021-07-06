@@ -1,7 +1,7 @@
 import styles from './header.module.css'
 import React from "react";
 import logo from '../../assets/images/logo2.png'
-import {NavLink, Redirect} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import PreloaderSmall from "../../common/preloaderSmall/preloaderSmall";
 import defaultAvatar from '../../assets/images/defaultUser.png'
 
@@ -14,7 +14,7 @@ let Header = (props) => {
             <div>
                 {
                     !props.isAuth
-                        ? <NavLink className={styles.login} to='/login'>Sign in &#9094;</NavLink>
+                        ? <NavLink className={styles.login} to='/login'>Login</NavLink>
                         : <div>
                             {
                                 !props.currentUser
@@ -22,13 +22,21 @@ let Header = (props) => {
                                     : <NavLink className={styles.loginLink}
                                                to={`/profile/${props.userId}`}>
                                         <div className={styles.userHolder}>
-                                            <img className={styles.loginAvatar}
-                                                 src={props.currentUser.photos.small
-                                                ? props.currentUser.photos.small
-                                                : defaultAvatar} alt="avatar"/>
-                                            <p className={styles.loginUser}>{props.login}</p>
-                                            <button className={styles.loginButton}
-                                                    onClick={ () => {props.logOutUser()} }>Logout</button>
+                                            <div className={styles.forLogout}
+                                                 onClick = { () => {props.activateHover()} }
+                                                 onMouseLeave = { () => {props.deActivateHover()} }>
+                                                <img className={styles.loginAvatar}
+                                                     src={props.currentUser.photos.small
+                                                         ? props.currentUser.photos.small
+                                                         : defaultAvatar} alt="avatar"/>
+                                                <p className={styles.loginUser}>{props.login}</p>
+                                                {!props.hoverStatus
+                                                    ? null
+                                                    : <button className={styles.loginButton}
+                                                              onClick={ () =>
+                                                              {props.logOutUser()} }>Logout</button>}
+                                            </div>
+
                                         </div>
                                     </NavLink>
                             }

@@ -43,6 +43,14 @@ let LoginForm = (props) => {
                    name='isRemember'/>
                    Remember me?
         </label>
+        {
+            !props.error
+                ? null
+                : <div className={styles.errorDiv}>
+                    {props.error}
+                </div>
+        }
+
         <button className={styles.button}>Login</button>
     </form>
 }

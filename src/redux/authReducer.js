@@ -1,8 +1,8 @@
 import {authAPI, profileAPI} from "../api/ajaxAPI";
+import {stopSubmit} from "redux-form";
 
 let GET_AUTH_USER_DATA = `GET_AUTH_USER_DATA`
 let SET_CURRENT_USER = `SET_CURRENT_USER `
-let LOGIN_USER = `LOGIN_USER`
 
 let initialState = {
     userId: undefined,
@@ -40,7 +40,7 @@ let setCurrentUser = (currentUser) => ( { type: SET_CURRENT_USER, currentUser } 
 //THUNK
 export let setAuthUserData = () => {
     return(dispatch) => {
-        authAPI.authUser().then(response => {
+        return authAPI.authUser().then(response => {
             if(response.data.resultCode === 0){
                 let {id, email, login} = response.data.data
                 dispatch(getAuthUserData(id, email, login, true))
@@ -57,8 +57,11 @@ export let LoginNewUser = (email, password,rememberMe) => {
         authAPI.loginUser(email, password,rememberMe).then(response => {
             if(response.data.resultCode === 0){
                 dispatch(setAuthUserData())
+            }else {
+                let errorMeaning = response.data.messages.length > 0 ? response.data.messages[0] : `Unknown error`
+                let action = stopSubmit(`loginForm`, {_error : errorMeaning})
+                dispatch(action)
             }
-
         })
     }
 }
