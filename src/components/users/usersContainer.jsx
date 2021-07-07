@@ -5,12 +5,13 @@ import {connect} from "react-redux";
 import {getUsers, subscribeUser, unSubscribeUser} from "../../redux/usersReducer";
 import Preloader from "../../common/preloader/preloader";
 import {
-    getAllUsers,
+    //getAllUsers,
     getCurrentPage,
     getFollowingProgress,
     getIsFetching,
     getPageSize,
-    getTotalUsersCount
+    getTotalUsersCount,
+    getUsersSuperSelector,
 } from "../../redux/usersSelectors";
 
 class UsersContainer extends React.Component{
@@ -32,7 +33,8 @@ class UsersContainer extends React.Component{
 
 let mapStateToProps = (state) => {
     return {
-        users: getAllUsers(state),
+       // users: getAllUsers(state),
+        users: getUsersSuperSelector(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),

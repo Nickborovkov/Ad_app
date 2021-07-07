@@ -23,7 +23,9 @@ let Profile = (props) => {
                <div className={styles.profileHolder}>
                    <div className={styles.avatarHolder}>
                        <img className={styles.avatar}
-                            src={props.profile.photos.large ? props.profile.photos.large : defaultAvatar}
+                            src={props.profile.photos.large
+                                ? props.profile.photos.large
+                                : defaultAvatar}
                             alt="avatar"/>
                        <ProfileStatus status={props.userStatus}
                                       updateUserStatus = {props.updateUserStatus}
@@ -36,7 +38,9 @@ let Profile = (props) => {
                            <p className={styles.propertyHeader}>Name:</p>
                            {props.profile.fullName}
                        </div>
-                       {!props.profile.aboutMe ? null : <div className={styles.property}>
+                       {!props.profile.aboutMe
+                           ? null
+                           : <div className={styles.property}>
                            <p className={styles.propertyHeader}>About me:</p>
                            {props.profile.aboutMe}
                        </div>}
@@ -47,9 +51,13 @@ let Profile = (props) => {
                        </div>
                        <div className={styles.property}>
                            <p className={styles.propertyHeader}>Looking for a job status:</p>
-                           {props.profile.lookingForAJob ? `Looking for a job` : `Not looking for a job`}
+                           {props.profile.lookingForAJob
+                               ? `Looking for a job`
+                               : `Not looking for a job`}
                        </div>
-                       {!props.profile.lookingForAJobDescription ? null : <div className={styles.property}>
+                       {!props.profile.lookingForAJobDescription
+                           ? null
+                           : <div className={styles.property}>
                            <p className={styles.propertyHeader}>Looking for a job description:</p>
                            {props.profile.lookingForAJobDescription}
                        </div>}
@@ -80,7 +88,9 @@ let Profile = (props) => {
                                     className={styles.post}>
                                    <div>
                                        <img className={styles.postAvatar}
-                                            src={props.profile.photos.large ? props.profile.photos.large : defaultAvatar}
+                                            src={props.profile.photos.large
+                                                ? props.profile.photos.large
+                                                : defaultAvatar}
                                             alt="avatar"/>
                                             <div className={styles.postName}>
                                                 {props.profile.fullName}
