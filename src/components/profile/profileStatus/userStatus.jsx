@@ -49,8 +49,19 @@ class ProfileStatus extends React.Component{
                 {
                     !this.state.editMode &&
                     <div>
-                        <p className={styles.statusHint}
-                           onClick={this.activateEditMode}>Change status</p>
+                        {
+                            !this.props.isAuth
+                                ? null
+                                : <div>
+                                    {
+                                        this.props.profileId === this.props.authUserId
+                                            ? <p className={styles.statusHint}
+                                                 onClick={this.activateEditMode}>Change status</p>
+                                            : null
+                                    }
+                                </div>
+                        }
+
                         <p className={styles.status}>{this.props.status}</p>
                     </div>
                 }

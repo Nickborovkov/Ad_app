@@ -23,7 +23,8 @@ class ProfileContainer extends React.Component{
         return <>
             {!this.props.profile ? <Preloader /> : <Profile {...this.props}
                                                             addNewPost={this.props.addNewPost}
-                                                            updateUserStatus = {this.props.updateUserStatus}/>}
+                                                            updateUserStatus = {this.props.updateUserStatus}
+                                                            authUserId = {this.props.authUserId}/>}
         </>
 
     }
@@ -35,7 +36,8 @@ let mapStateToProps = (state) => {
         profile: state.profilePage.profile,
         userStatus: state.profilePage.userStatus,
         authorisedUserId: state.auth.userId,
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        authUserId: state.auth.userId,
     }
 }
 

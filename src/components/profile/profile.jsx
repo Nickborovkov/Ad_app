@@ -26,7 +26,10 @@ let Profile = (props) => {
                             src={props.profile.photos.large ? props.profile.photos.large : defaultAvatar}
                             alt="avatar"/>
                        <ProfileStatus status={props.userStatus}
-                                      updateUserStatus = {props.updateUserStatus}/>
+                                      updateUserStatus = {props.updateUserStatus}
+                                      isAuth = {props.isAuth}
+                                      profileId={props.profile.userId}
+                                      authUserId = {props.authUserId}/>
                    </div>
                    <div className={styles.propertiesHolder}>
                        <div className={styles.property}>
@@ -56,7 +59,19 @@ let Profile = (props) => {
            </div>
            <div>
                <h2 className={styles.title}>My posts</h2>
-               <PostsFormRedux onSubmit={onPostAdd}/>
+               {
+                   !props.isAuth
+                       ? null
+                       : <div>
+                           {
+                               props.profile.userId === props.authUserId
+                                   ? <PostsFormRedux onSubmit={onPostAdd}/>
+                                   : null
+                           }
+                       </div>
+
+               }
+
                <div>
                    {
                        props.posts.map(p => {

@@ -77,7 +77,7 @@ export default usersReducer
 let setUsers = (users) => ( { type: SET_USERS, users} )
 let follow = (userId) => ( { type: FOLLOW, userId} )
 let unfollow = (userId) => ( { type: UNFOLLOW, userId} )
-export let setCurrentPage = (currentPage) => ( { type: SET_CURRENT_PAGE, currentPage} )
+let setCurrentPage = (currentPage) => ( { type: SET_CURRENT_PAGE, currentPage} )
 let setTotalUsersCount = (totalUsersCount) => ( { type: SET_TOTAL_USERS_COUNT, totalUsersCount} )
 let toggleIsFetching = (isFetching) => ( { type: TOGGLE_IS_FETCHING, isFetching} )
 let togglFollowingProgress = (followingProgress, userId) => ( { type: TOGGLE_IS_FOLLOWING_PROGRESS, followingProgress, userId } )
@@ -86,6 +86,7 @@ let togglFollowingProgress = (followingProgress, userId) => ( { type: TOGGLE_IS_
  export let getUsers = (pageSize, currentPage) => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true))
+        dispatch(setCurrentPage(currentPage))
         usersAPI.getUsers(pageSize, currentPage).then(response => {
             dispatch(toggleIsFetching(false))
             dispatch(setUsers(response.data.items))
