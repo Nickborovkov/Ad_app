@@ -2,9 +2,9 @@ import React from "react";
 import styles from './profile.module.css'
 import defaultAvatar from '../../assets/images/defaultUser.png'
 import {Field, reduxForm} from "redux-form";
-import ProfileStatus from "./profileStatus/userStatus";
 import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
 import {TextArea} from "../../common/FormsControls/FormsControls";
+import ProfileStatusWithHooks from "./profileStatus/userStatusWithHooks";
 
 
 const maxLength10 = maxLengthCreator(200)
@@ -27,7 +27,7 @@ let Profile = (props) => {
                                 ? props.profile.photos.large
                                 : defaultAvatar}
                             alt="avatar"/>
-                       <ProfileStatus status={props.userStatus}
+                       <ProfileStatusWithHooks status={props.userStatus}
                                       updateUserStatus = {props.updateUserStatus}
                                       isAuth = {props.isAuth}
                                       profileId={props.profile.userId}
