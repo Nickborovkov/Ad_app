@@ -113,3 +113,19 @@
     font-size: 20px;
     text-align: center;
 }
+.deleteButton{
+    display: block;
+    width: 100px;
+    height: 40px;
+    background-color: #ff7f3a;
+    color: white;
+    font-size: 20px;
+    border: none;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+.postList{
+    display: flex;
+    flex-direction: column-reverse;
+}

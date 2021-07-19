@@ -66,3 +66,13 @@
     margin: 30px auto;
     font-size: 30px;
 }
+.deleteButton{
+    width: 100px;
+    height: 30px;
+    background-color: #ff7f3a;
+    color: white;
+    border: none;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}

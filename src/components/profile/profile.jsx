@@ -17,6 +17,7 @@ let Profile = (props) => {
     }
 
     return (
+
         <div className={styles.profile}>
            <div>
                <h2 className={styles.title}>Profile</h2>
@@ -81,34 +82,38 @@ let Profile = (props) => {
                }
 
                <div>
-                   {
-                       props.posts.map(p => {
-                           return (
-                               <div key={p.id}
-                                    className={styles.post}>
-                                   <div>
-                                       <img className={styles.postAvatar}
-                                            src={props.profile.photos.large
-                                                ? props.profile.photos.large
-                                                : defaultAvatar}
-                                            alt="avatar"/>
-                                            <div className={styles.postName}>
-                                                {props.profile.fullName}
-                                            </div>
+                   <div className={styles.postList}>
+                       {
+                           props.posts.map(p => {
+                               return (
+                                   <div key={p.id}
+                                        className={styles.post}>
+                                       <div>
+                                           <img className={styles.postAvatar}
+                                                src={props.profile.photos.large
+                                                    ? props.profile.photos.large
+                                                    : defaultAvatar}
+                                                alt="avatar"/>
+                                           <div className={styles.postName}>
+                                               {props.profile.fullName}
+                                           </div>
 
-                                   </div>
+                                       </div>
 
-                                   <div className={styles.postText}>
-                                       {p.post}
+                                       <div className={styles.postText}>
+                                           {p.post}
+                                       </div>
+                                       <div className={styles.likesCount}>
+                                           {p.likesCount}
+                                           <button className={styles.likeBtn}>Like</button>
+                                       </div>
+                                       <button className={styles.deleteButton} onClick={()=>{props.deletePost(p.id)}}>Delete</button>
                                    </div>
-                                   <div className={styles.likesCount}>
-                                       {p.likesCount}
-                                       <button className={styles.likeBtn}>Like</button>
-                                   </div>
-                               </div>
-                           )
-                       }).reverse()
-                   }
+                               )
+                           })
+                       }
+                   </div>
+
                </div>
            </div>
         </div>

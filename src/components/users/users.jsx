@@ -1,64 +1,34 @@
 import React from "react";
 import styles from './users.module.css'
-import defaultAvatar from '../../assets/images/defaultUser.png'
-import {NavLink} from "react-router-dom";
+import User from "./user/user";
+import Paginator from "../../common/Paginator/paginator";
+import Preloader from "../../common/preloader/preloader";
 
-let Users = (props) => {
-
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    let pages = []
-    for(let i = 1; i <= pagesCount; i++){
-        pages.push(i)
-    }
-
-    return (
-        <div className={styles.users}>
-            <h2 className={styles.title}>Users</h2>
-            <div className={styles.usersList}>
-                {
-                    props.users.map(u => {
-                        return (
-                            <div key={u.id}
-                                 className={styles.user}>
-                                <NavLink to={`/profile/${u.id}`}>
-                                    <img className={styles.avatar}
-                                         src={u.photos.small ? u.photos.small : defaultAvatar}
-                                         alt="avatar"/>
-                                </NavLink>
-                                <div className={styles.propery}>{u.name}</div>
-                                <div className={styles.propery}>{u.status}</div>
-                                <div className={styles.propery}>{u.id}</div>
-                                <div>
-                                    {
-                                        !u.followed
-                                            ? <button disabled={props.followingProgress.some(id => id === u.id)}
-                                                      className={styles.followBtn}
-                                                onClick={()=>{props.subscribeUser(u.id)} }>Follow</button>
-                                            : <button disabled={props.followingProgress.some(id => id === u.id)}
-                                                      className={styles.followBtn}
-                                                onClick={()=>{props.unSubscribeUser(u.id)} }>Unfollow</button>
-                                    }
-                                </div>
-                            </div>
-                        )
-                    })
+let Users = ({totalUsersCount, pageSize, users,followingProgress,
+                 subscribeUser, unSubscribeUser, onPageChanged, currentPage, isFetching}) => {
+        return (
+            <div>
+                {isFetching
+                    ? <Preloader />
+                    :<div className={styles.users}>
+                        <h2 className={styles.title}>Users</h2>
+                        <div className={styles.usersList}>
+                            {
+                                users.map(u => <User key={u.id}
+                                                     user={u}
+                                                     followingProgress={followingProgress}
+                                                     subscribeUser={subscribeUser}
+                                                     unSubscribeUser={unSubscribeUser}/>)
+                            }
+                        </div>
+                    </div>
                 }
+                <Paginator totalUsersCount = {totalUsersCount}
+                           pageSize = {pageSize}
+                           onPageChanged={onPageChanged}
+                           currentPage = {currentPage}/>
             </div>
-            <div className={styles.pages}>
-                {
-                    pages.map(p => {
-                        return (
-                            <div className={styles.page}>
-                                <div className={props.currentPage === p && styles.activePage}
-                                     onClick={ () => {props.onPageChanged(p)} }>
-                                    {p}
-                                </div>
-                            </div>
-                        )
-                    })
-                }
-            </div>
-        </div>
+
     )
 }
 

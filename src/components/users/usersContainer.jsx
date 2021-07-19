@@ -22,14 +22,11 @@ class UsersContainer extends React.Component{
         this.props.getUsers(this.props.pageSize, pageNumber)
     }
     render() {
-        return <>
-            {this.props.isFetching ? <Preloader /> : <Users {...this.props}
-                                                            subscribeUser = {this.props.subscribeUser}
-                                                            unSubscribeUser = {this.props.unSubscribeUser}
-                                                            onPageChanged = {this.onPageChanged}/>}
-        </>
+        return <Users {...this.props}
+                      subscribeUser = {this.props.subscribeUser}
+                      unSubscribeUser = {this.props.unSubscribeUser}
+                      onPageChanged = {this.onPageChanged}/>}
     }
-}
 
 let mapStateToProps = (state) => {
     return {

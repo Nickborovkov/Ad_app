@@ -1,4 +1,6 @@
-const ADD_MESSAGE = `ADD_MESSAGE`
+const ADD_MESSAGE = `samuraiNetwork/dialogs/ADD_MESSAGE`
+const DELETE_MESSAGE = `samuraiNetwork/dialogs/DELETE_MESSAGE`
+
 
 const  initialState = {
     dialogs: [
@@ -9,26 +11,31 @@ const  initialState = {
     ]
 }
 
+
 let dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE:
             return {
                 ...state,
-                dialogs: [...state.dialogs, {id: 5, user: action.user, message: action.message}]
+                dialogs: [...state.dialogs, {id: state.dialogs.length + 1, user: action.user, message: action.message}]
+            }
+        case DELETE_MESSAGE:
+            return {
+                ...state,
+                dialogs: state.dialogs.filter(d => d.id !== action.messageId)
             }
         default:
             return state
     }
 }
 
+
 export default dialogsReducer
 
-//AC
-const addMessage = (user, message) => ( { type: ADD_MESSAGE, user, message } )
 
-//THUNK
-export const addNewMessage = (user, message) => {
-    return(dispatch) => {
-        dispatch(addMessage(user, message))
-    }
-}
+//AC
+export const addMessage = (user, message) =>
+    ( { type: ADD_MESSAGE, user, message } )
+
+export const deleteMessage = (messageId) =>
+    ( { type: DELETE_MESSAGE, messageId } )

@@ -1,10 +1,13 @@
 import {setAuthUserData} from "./authReducer";
 
-const INITIALIZED_SUCCESS = `INITIALIZED_SUCCESS`
+
+const INITIALIZED_SUCCESS = `samuraiNetwork/app/INITIALIZED_SUCCESS`
+
 
 const initialState = {
     initialized: false
 }
+
 
 const appReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -20,18 +23,18 @@ const appReducer = (state = initialState, action) => {
 
 export default appReducer
 
+
 //AC
-const setInitializingSuccess = () => ( { type: INITIALIZED_SUCCESS } )
+const setInitializingSuccess = () =>
+    ( { type: INITIALIZED_SUCCESS } )
+
 
 //THUNK
-
 export const initializeApp = () => {
     return (dispatch) => {
         let promise = dispatch(setAuthUserData())
         Promise.all([promise]).then(() => {
             dispatch(setInitializingSuccess())
         })
-
-
     }
 }

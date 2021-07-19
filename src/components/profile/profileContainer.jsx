@@ -2,12 +2,12 @@ import React from "react";
 import Profile from "./profile";
 import {compose} from "redux";
 import {connect} from "react-redux";
-import {addNewPost, setUserProfile, setUserStatus, updateUserStatus} from "../../redux/profileReducer";
+import {addPost, deletePost, setUserProfile, setUserStatus, updateUserStatus} from "../../redux/profileReducer";
 import Preloader from "../../common/preloader/preloader";
 import {withRouter} from "react-router-dom";
-import {withAuthRedirect} from "../HOC/withAuthRedirect";
 
-class ProfileContainer extends React.Component{
+class ProfileContainer extends React.PureComponent{
+
     componentDidMount() {
         let userId = this.props.match.params.userId
         if(!userId){
@@ -22,9 +22,10 @@ class ProfileContainer extends React.Component{
     render() {
         return <>
             {!this.props.profile ? <Preloader /> : <Profile {...this.props}
-                                                            addNewPost={this.props.addNewPost}
+                                                            addNewPost={this.props.addPost}
                                                             updateUserStatus = {this.props.updateUserStatus}
-                                                            authUserId = {this.props.authUserId}/>}
+                                                            authUserId = {this.props.authUserId}
+                                                            deletePost = {this.props.deletePost}/>}
         </>
 
     }
@@ -41,7 +42,6 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, {addNewPost, setUserProfile, setUserStatus, updateUserStatus}),
+    connect(mapStateToProps, {addPost, deletePost, setUserProfile, setUserStatus, updateUserStatus}),
     withRouter,
-    // withAuthRedirect,
 )(ProfileContainer)

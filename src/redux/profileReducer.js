@@ -1,8 +1,11 @@
 import {profileAPI} from "../api/ajaxAPI";
 
-let ADD_POST = `ADD_POST`
-let SET_PROFILE = `SET_PROFILE`
-let GET_USER_STATUS = `GET_USER_STATUS`
+
+let ADD_POST = `samuraiNetwork/profile/ADD_POST`
+let DELETE_POST = `samuraiNetwork/profile/DELETE_POST`
+let SET_PROFILE = `samuraiNetwork/profile/SET_PROFILE`
+let GET_USER_STATUS = `samuraiNetwork/profile/GET_USER_STATUS`
+
 
 let initialState = {
     posts: [
@@ -15,12 +18,18 @@ let initialState = {
     userStatus: undefined,
 }
 
+
 let profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
             return {
                 ...state,
-                posts: [...state.posts, {id: 5, post: action.postText, likesCount: 111}]
+                posts: [...state.posts, {id: state.posts.length + 1, post: action.postText, likesCount: 0}]
+            }
+        case DELETE_POST:
+            return {
+                ...state,
+                posts: state.posts.filter(p => p.id !== action.postId)
             }
         case SET_PROFILE:
             return {
@@ -37,40 +46,38 @@ let profileReducer = (state = initialState, action) => {
     }
 }
 
+
 export default profileReducer
 
+
 //AC
-let addPost = (postText) => ( { type: ADD_POST, postText } )
-let setProfile = (profile) => ( { type: SET_PROFILE, profile } )
-let getUserStatus = (userStatus) => ( { type: GET_USER_STATUS, userStatus } )
+export let addPost = (postText) =>
+    ( { type: ADD_POST, postText } )
+
+export let deletePost = (postId) =>
+    ( { type: DELETE_POST, postId } )
+
+let setProfile = (profile) =>
+    ( { type: SET_PROFILE, profile } )
+
+let getUserStatus = (userStatus) =>
+    ( { type: GET_USER_STATUS, userStatus } )
+
 
 //THUNK
-export let addNewPost = (postText) => {
-    return (dispatch) => {
-        dispatch(addPost(postText))
-    }
+export let setUserProfile = (userId) => async dispatch => {
+    let response = await profileAPI.getProfile(userId)
+        dispatch(setProfile(response.data))
 }
 
-export let setUserProfile = (userId) => {
-    return (dispatch) => {
-        profileAPI.getProfile(userId).then(response => {
-            dispatch(setProfile(response.data))
-        })
-    }
+export let setUserStatus = (userId) => async dispatch => {
+    let response = await profileAPI.getStatus(userId)
+    dispatch(getUserStatus(response.data))
 }
 
-export let setUserStatus = (userId) => {
-    return (dispatch) => {
-        profileAPI.getStatus(userId).then(response => {
-            dispatch(getUserStatus(response.data))
-        })
-    }
-}
-
-export let updateUserStatus = (status) => {
-    return (dispatch) => {
-        profileAPI.updateStatus(status).then(response => {
-            dispatch(getUserStatus(status))
-        })
+export let updateUserStatus = (status) => async dispatch => {
+    let response = await profileAPI.updateStatus(status)
+    if(response.data.resultCode === 0){
+        dispatch(getUserStatus(status))
     }
 }

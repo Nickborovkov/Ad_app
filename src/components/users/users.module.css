@@ -77,3 +77,20 @@
     -moz-border-radius: 10px;
     border-radius: 10px;
 }
+.paginatorButton{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    background-color: #ff7f3a;
+    color: white;
+    font-size: 20px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin: 5px;
+    border: none;
+}
+.paginatorButtonsHolder{
+    display: flex;
+    justify-content: center;
+}
