@@ -12,7 +12,7 @@ let User = ({user, followingProgress, subscribeUser,unSubscribeUser}) => {
                      alt="avatar"/>
             </NavLink>
             <div className={styles.propery}>{user.name}</div>
-            <div className={styles.propery}>{user.status}</div>
+            <div className={styles.propertyStatus}>{user.status}</div>
             <div className={styles.propery}>{user.id}</div>
             <div>
                 {

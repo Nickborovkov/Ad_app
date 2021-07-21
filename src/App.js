@@ -2,7 +2,7 @@ import './App.css';
 import React, {Suspense, lazy} from "react";
 import Footer from "./components/footer/footer";
 import Navbar from "./components/navbar/navbar";
-import {Route, Switch, withRouter} from "react-router-dom";
+import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import HeaderContainer from "./components/header/headerContainer";
 
 import ProfileContainer from "./components/profile/profileContainer";
@@ -17,14 +17,14 @@ const DialogsContainer = lazy(() => import("./components/dialogs/dialogsContaine
 const LoginContainer = lazy(() => import("./components/login/loginContainer"))
 
 
-
 class App extends React.Component {
     componentDidMount() {
         this.props.initializeApp()
     }
+
     render() {
 
-        if(!this.props.initialized) return <Preloader />
+        if (!this.props.initialized) return <Preloader/>
 
         return (
             <div className="appWrapper">
@@ -32,18 +32,27 @@ class App extends React.Component {
                 <div className='appInner'>
                     <Navbar/>
                     <div className='appContent'>
-                        <Route path='/profile/:userId?'
-                               render={() => <ProfileContainer/>}/>
-                               <Suspense fallback={<Preloader />}>
-                                   <Switch>
-                                       <Route path='/dialogs'
-                                              render={() => <DialogsContainer/>}/>
-                                       <Route path='/users'
-                                              render={() => <UsersContainer/>}/>
-                                       <Route path='/login'
-                                              render={() => <LoginContainer/>}/>
-                                   </Switch>
-                               </Suspense>
+                        <Switch>
+
+                            <Route exact path='/profile/:userId?'
+                                   render={() => <ProfileContainer/>}/>
+                            <Suspense fallback={<Preloader/>}>
+                                <Switch>
+                                    <Route path='/dialogs'
+                                           render={() => <DialogsContainer/>}/>
+                                    <Route path='/users'
+                                           render={() => <UsersContainer/>}/>
+                                    <Route path='/login'
+                                           render={() => <LoginContainer/>}/>
+                                    <Route exact path='/'
+                                           render={() => <Redirect to={`/profile`}/>}/>
+                                    <Route path='*'
+                                           render={() => <div>404 NOT FOUND</div>}/>
+                                </Switch>
+                            </Suspense>
+
+                        </Switch>
+
 
                     </div>
                 </div>

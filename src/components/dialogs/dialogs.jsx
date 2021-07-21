@@ -4,6 +4,7 @@ import {Field, reduxForm} from "redux-form";
 import {Input, TextArea} from "../../common/FormsControls/FormsControls";
 import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
 import Dialog from "./dialog/dialog";
+import cn from 'classnames'
 
 
 let maxLength200 = maxLengthCreator(200)
@@ -21,7 +22,7 @@ let Dialogs = (props) => {
     }
 
     return (
-        <div className={styles.dialogs}>
+        <div className={cn(styles.dialogs)}>
             <h2 className={styles.title}>Dialogs</h2>
             <div className={styles.dialogsHolder}>
                 {props.dialogs.map(d => <Dialog key={d.id}

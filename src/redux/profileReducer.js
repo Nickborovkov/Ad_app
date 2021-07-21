@@ -1,10 +1,12 @@
 import {profileAPI} from "../api/ajaxAPI";
+import {stopSubmit} from "redux-form";
 
 
 let ADD_POST = `samuraiNetwork/profile/ADD_POST`
 let DELETE_POST = `samuraiNetwork/profile/DELETE_POST`
 let SET_PROFILE = `samuraiNetwork/profile/SET_PROFILE`
 let GET_USER_STATUS = `samuraiNetwork/profile/GET_USER_STATUS`
+let SAVE_PHOTOS_SUCCESS = `samuraiNetwork/profile/SAVE_PHOTOS_SUCCESS`
 
 
 let initialState = {
@@ -41,6 +43,11 @@ let profileReducer = (state = initialState, action) => {
                 ...state,
                 userStatus: action.userStatus
             }
+        case SAVE_PHOTOS_SUCCESS:
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.photos}
+            }
         default:
             return state
     }
@@ -63,6 +70,9 @@ let setProfile = (profile) =>
 let getUserStatus = (userStatus) =>
     ( { type: GET_USER_STATUS, userStatus } )
 
+let savePhotoSuccess = (photos) =>
+    ( { type: SAVE_PHOTOS_SUCCESS, photos} )
+
 
 //THUNK
 export let setUserProfile = (userId) => async dispatch => {
@@ -79,5 +89,27 @@ export let updateUserStatus = (status) => async dispatch => {
     let response = await profileAPI.updateStatus(status)
     if(response.data.resultCode === 0){
         dispatch(getUserStatus(status))
+    }
+}
+
+export let savePhoto = (file) => async dispatch => {
+    let response = await profileAPI.savePhoto(file)
+    if(response.data.resultCode === 0){
+        dispatch(savePhotoSuccess(response.data.data.photos))
+    }
+}
+
+export let saveProfile = (profile) => async (dispatch, getState) => {
+    let userId = getState().auth.userId
+    let response = await profileAPI.saveProfile(profile)
+    if(response.data.resultCode === 0){
+        dispatch(setUserProfile(userId))
+    }else {
+        let errorMeaning = response.data.messages.length > 0
+            ? response.data.messages[0]
+            : `unknown error`
+        let action = stopSubmit(`profileEditForm`, {_error: errorMeaning})
+        dispatch(action)
+        return Promise.reject()
     }
 }

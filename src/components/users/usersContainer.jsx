@@ -3,7 +3,6 @@ import Users from "./users";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {getUsers, subscribeUser, unSubscribeUser} from "../../redux/usersReducer";
-import Preloader from "../../common/preloader/preloader";
 import {
     //getAllUsers,
     getCurrentPage,

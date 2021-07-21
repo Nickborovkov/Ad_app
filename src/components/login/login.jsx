@@ -8,7 +8,7 @@ import {Redirect} from "react-router-dom";
 let Login = (props) => {
 
     let onLoginSubmit = (values) => {
-        props.LoginNewUser(values.userLogin, values.userPassword, values.isRemember)
+        props.LoginNewUser(values.userLogin, values.userPassword, values.isRemember, values.captchaEnter)
     }
 
     if(props.isAuth) {
@@ -18,7 +18,7 @@ let Login = (props) => {
     return (
         <div>
             <h2 className={styles.title}>Login</h2>
-           <LoginFormRedux onSubmit={onLoginSubmit}/>
+           <LoginFormRedux onSubmit={onLoginSubmit} {...props}/>
         </div>
     )
 }
@@ -43,6 +43,20 @@ let LoginForm = (props) => {
                    name='isRemember'/>
                    Remember me?
         </label>
+
+        {
+            props.captchaUrl &&
+                <div>
+                    <img src={props.captchaUrl} alt="captcha"/>
+                    <Field component={`input`}
+                           type={`text`}
+                           placeholder={`Enter captcha`}
+                           name={`captchaEnter`}
+                           validate={[requiredField]}/>
+                </div>
+
+        }
+
         {
             !props.error
                 ? null
