@@ -8,20 +8,52 @@ let SET_PROFILE = `samuraiNetwork/profile/SET_PROFILE`
 let GET_USER_STATUS = `samuraiNetwork/profile/GET_USER_STATUS`
 let SAVE_PHOTOS_SUCCESS = `samuraiNetwork/profile/SAVE_PHOTOS_SUCCESS`
 
+type profilePostType = {
+    id: number,
+    post: string,
+    likesCount: number,
+}
+
+type contactsType = {
+    facebook: string,
+    website: string,
+    vk: string,
+    twitter: string,
+    instagram: string,
+    youtube: string,
+    github: string,
+    mainLink: string,
+}
+
+type photosType = {
+    small: string | null,
+    large: string | null,
+}
+
+type profileType = {
+    aboutMe: string | null,
+    contacts: contactsType,
+    lookingForAJob: boolean,
+    lookingForAJobDescription: string | null,
+    fullName: string,
+    userId: number,
+    photos: photosType
+}
 
 let initialState = {
     posts: [
-        {id: 1, post: `DefaultPostText1`, likesCount: `13`},
-        {id: 2, post: `DefaultPostText2`, likesCount: `4`},
-        {id: 3, post: `DefaultPostText3`, likesCount: `5`},
-        {id: 4, post: `DefaultPostText4`, likesCount: `8`},
-    ],
-    profile: null,
-    userStatus: undefined,
+        {id: 1, post: `DefaultPostText1`, likesCount: 13},
+        {id: 2, post: `DefaultPostText2`, likesCount: 4},
+        {id: 3, post: `DefaultPostText3`, likesCount: 5},
+        {id: 4, post: `DefaultPostText4`, likesCount: 8},
+    ] as Array<profilePostType>,
+    profile: null as profileType | null,
+    userStatus: ``,
 }
 
+type initialStateType = typeof initialState
 
-let profileReducer = (state = initialState, action) => {
+let profileReducer = (state = initialState, action:any):initialStateType => {
     switch (action.type) {
         case ADD_POST:
             return {
@@ -46,7 +78,7 @@ let profileReducer = (state = initialState, action) => {
         case SAVE_PHOTOS_SUCCESS:
             return {
                 ...state,
-                profile: {...state.profile, photos: action.photos}
+                profile: {...state.profile, photos: action.photos} as profileType
             }
         default:
             return state
@@ -58,48 +90,72 @@ export default profileReducer
 
 
 //AC
-export let addPost = (postText) =>
+type addPostACType = {
+    type: typeof ADD_POST,
+    postText: string
+}
+export let addPost = (postText: string):addPostACType =>
     ( { type: ADD_POST, postText } )
 
-export let deletePost = (postId) =>
+
+type deletePostACType = {
+    type: typeof DELETE_POST,
+    postId: number
+}
+export let deletePost = (postId: number):deletePostACType =>
     ( { type: DELETE_POST, postId } )
 
-let setProfile = (profile) =>
+
+type setProfileACType = {
+    type: typeof SET_PROFILE,
+    profile: profileType
+}
+export let setProfile = (profile: profileType):setProfileACType =>
     ( { type: SET_PROFILE, profile } )
 
-let getUserStatus = (userStatus) =>
+
+type getUserStatusACType = {
+    type: typeof GET_USER_STATUS,
+    userStatus: string
+}
+export let getUserStatus = (userStatus: string):getUserStatusACType =>
     ( { type: GET_USER_STATUS, userStatus } )
 
-let savePhotoSuccess = (photos) =>
+
+type savePhotoSuccessACType = {
+    type: typeof SAVE_PHOTOS_SUCCESS,
+    photos: photosType
+}
+export let savePhotoSuccess = (photos: any):savePhotoSuccessACType =>
     ( { type: SAVE_PHOTOS_SUCCESS, photos} )
 
 
 //THUNK
-export let setUserProfile = (userId) => async dispatch => {
+export let setUserProfile = (userId:number) => async (dispatch:any) => {
     let response = await profileAPI.getProfile(userId)
         dispatch(setProfile(response.data))
 }
 
-export let setUserStatus = (userId) => async dispatch => {
+export let setUserStatus = (userId:number) => async (dispatch:any) => {
     let response = await profileAPI.getStatus(userId)
     dispatch(getUserStatus(response.data))
 }
 
-export let updateUserStatus = (status) => async dispatch => {
+export let updateUserStatus = (status:string) => async (dispatch:any) => {
     let response = await profileAPI.updateStatus(status)
     if(response.data.resultCode === 0){
         dispatch(getUserStatus(status))
     }
 }
 
-export let savePhoto = (file) => async dispatch => {
+export let savePhoto = (file:any) => async (dispatch:any) => {
     let response = await profileAPI.savePhoto(file)
     if(response.data.resultCode === 0){
         dispatch(savePhotoSuccess(response.data.data.photos))
     }
 }
 
-export let saveProfile = (profile) => async (dispatch, getState) => {
+export let saveProfile = (profile:profileType) => async (dispatch:any, getState:any) => {
     let userId = getState().auth.userId
     let response = await profileAPI.saveProfile(profile)
     if(response.data.resultCode === 0){
